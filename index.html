@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A History of Mind</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="site.js" defer></script>
+  <style>
+    body.page-home-curricula .curricula {
+      max-width: var(--max-page);
+      margin: 0 auto 3.5rem;
+      padding: 0 2rem;
+    }
+
+    body.page-home-curricula .curricula-shell {
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 2rem 0 2.2rem;
+    }
+
+    body.page-home-curricula .curricula-intro {
+      max-width: 42rem;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+
+    body.page-home-curricula .curricula-kicker {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    body.page-home-curricula .curricula-intro h2 {
+      margin: 0 0 0.8rem;
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1.2;
+    }
+
+    body.page-home-curricula .curricula-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 0 0 1.6rem;
+    }
+
+    body.page-home-curricula .curricula-tab {
+      border: 1px solid var(--rule);
+      background: color-mix(in srgb, var(--paper) 88%, white 12%);
+      color: var(--ink-soft);
+      border-radius: 999px;
+      padding: 0.68rem 1.18rem 0.72rem;
+      font-family: var(--sans);
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+      transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    body.page-home-curricula .curricula-tab:hover,
+    body.page-home-curricula .curricula-tab:focus-visible {
+      color: var(--accent-link);
+      border-color: var(--accent-link);
+      background: color-mix(in srgb, var(--highlight) 72%, white 28%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(30, 20, 10, 0.08);
+      outline: none;
+    }
+
+    body.page-home-curricula .curricula-tab.is-active {
+      background: color-mix(in srgb, var(--highlight) 82%, white 18%);
+      border-color: var(--accent-link);
+      color: var(--accent-link);
+      box-shadow: 0 0 0 1px rgba(122, 61, 42, 0.08) inset;
+    }
+
+    body.page-home-curricula .curricula-panel {
+      display: none;
+      gap: 1.75rem;
+      align-items: start;
+    }
+
+    body.page-home-curricula .curricula-panel.is-active {
+      display: grid;
+      grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+    }
+
+    body.page-home-curricula .curricula-summary {
+      position: sticky;
+      top: 1.25rem;
+      border: 1px solid var(--rule);
+      background: color-mix(in srgb, var(--paper) 86%, white 14%);
+      box-shadow: 0 10px 24px rgba(30, 20, 10, 0.05);
+      padding: 1rem 1rem 1.1rem;
+    }
+
+    body.page-home-curricula .curricula-summary h3 {
+      margin: 0 0 0.55rem;
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.45rem;
+      line-height: 1.2;
+    }
+
+    body.page-home-curricula .curricula-summary p {
+      margin: 0 0 0.9rem;
+      color: var(--ink-soft);
+      font-size: 0.97rem;
+      line-height: 1.6;
+    }
+
+    body.page-home-curricula .curricula-meta {
+      display: grid;
+      gap: 0.55rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: var(--sans);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    body.page-home-curricula .curricula-meta strong {
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      text-transform: none;
+      font-weight: 600;
+      margin-left: 0.35rem;
+    }
+
+    body.page-home-curricula .curricula-blocks {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.35rem 1.5rem;
+    }
+
+    body.page-home-curricula .curriculum-block {
+      border: 1px solid color-mix(in srgb, var(--rule) 80%, white 20%);
+      background: color-mix(in srgb, var(--paper) 92%, white 8%);
+      padding: 0.95rem 1rem 1rem;
+      min-height: 100%;
+    }
+
+    body.page-home-curricula .curriculum-block-index {
+      display: inline-block;
+      margin-bottom: 0.45rem;
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    body.page-home-curricula .curriculum-block h4 {
+      margin: 0 0 0.45rem;
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+
+    body.page-home-curricula .curriculum-block p {
+      margin: 0 0 0.55rem;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    body.page-home-curricula .curriculum-block ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    body.page-home-curricula .curriculum-block li + li {
+      margin-top: 0.2rem;
+    }
+
+    body.page-home-curricula .curriculum-block strong {
+      color: var(--ink-soft);
+      font-weight: 600;
+    }
+
+    body.page-home-curricula .curricula-note {
+      max-width: 46rem;
+      margin: 1.5rem auto 0;
+      text-align: center;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      letter-spacing: 0.03em;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 980px) {
+      body.page-home-curricula .curricula-panel.is-active {
+        grid-template-columns: 1fr;
+      }
+
+      body.page-home-curricula .curricula-summary {
+        position: static;
+      }
+    }
+
+    @media (max-width: 760px) {
+      body.page-home-curricula .curricula {
+        padding: 0 1.25rem;
+      }
+
+      body.page-home-curricula .curricula-blocks {
+        grid-template-columns: 1fr;
+      }
+
+      body.page-home-curricula .curricula-tabs {
+        align-items: stretch;
+      }
+
+      body.page-home-curricula .curricula-tab {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="page-home-curricula">
+<!-- Generated by tools/build_site.py: do not edit header/footer by hand. -->
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="index.html" class="site-title"><em>A History of Mind</em></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html" class="nav-link active">Home</a>
+      <div class="nav-group">
+        <button type="button" class="nav-link nav-label" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-ancient-medieval">Ancient &amp; Medieval<span class="nav-caret" aria-hidden="true"> &#9662;</span></button>
+        <div class="nav-submenu" id="submenu-ancient-medieval">
+          <a href="antiquity.html" class="nav-sublink">Antiquity</a>
+          <a href="late-antiquity.html" class="nav-sublink">Late Antiquity</a>
+          <a href="south-asian.html" class="nav-sublink">South Asian</a>
+          <a href="east-asian.html" class="nav-sublink">East Asian</a>
+          <a href="islamic.html" class="nav-sublink">Islamic</a>
+          <a href="jewish.html" class="nav-sublink">Jewish</a>
+          <a href="scholasticism.html" class="nav-sublink">Scholasticism</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-link nav-label" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-early-modern">Early Modern<span class="nav-caret" aria-hidden="true"> &#9662;</span></button>
+        <div class="nav-submenu" id="submenu-early-modern">
+          <a href="renaissance.html" class="nav-sublink">Renaissance</a>
+          <a href="early-modern.html" class="nav-sublink">Early Modern</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-link nav-label" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-modern">Modern<span class="nav-caret" aria-hidden="true"> &#9662;</span></button>
+        <div class="nav-submenu" id="submenu-modern">
+          <a href="nineteenth-century.html" class="nav-sublink">19th Century</a>
+          <a href="phenomenology.html" class="nav-sublink">Phenomenology</a>
+          <a href="analytic.html" class="nav-sublink">Analytic</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button type="button" class="nav-link nav-label" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-contemporary">Contemporary<span class="nav-caret" aria-hidden="true"> &#9662;</span></button>
+        <div class="nav-submenu" id="submenu-contemporary">
+          <a href="consciousness-science.html" class="nav-sublink">Consciousness Science</a>
+          <a href="machine-minds.html" class="nav-sublink">Machine Minds</a>
+          <a href="moral-status.html" class="nav-sublink">Moral Status</a>
+        </div>
+      </div>
+      <a href="glossary.html" class="nav-link">Glossary</a>
+      <a href="about.html" class="nav-link">About</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="kicker">How we came to think about thinking</div>
+  <h1>A History of <em>Mind</em></h1>
+</section>
+
+<section class="constellation" aria-label="A constellation of minds">
+<figure class="constellation-figure">
+<svg class="constellation-svg" viewBox="0 0 1400 620" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-labelledby="constellation-title constellation-desc">
+  <title id="constellation-title">A constellation of minds</title>
+  <desc id="constellation-desc">Each era of thinking about the mind forms a constellation. Stars are philosophers and traditions; click a star to read its page. A faint thread traces chronological order through the eras.</desc>
+  <defs>
+    <!-- Warm halo behind era hubs, in the site's sienna accent. -->
+    <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#7a3d2a" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#7a3d2a" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#7a3d2a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="0.6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g class="constellation-dust" aria-hidden="true">
+    <circle cx="1200.2" cy="259.4" r="0.4" opacity="0.17"/>
+    <circle cx="533.0" cy="175.1" r="0.8" opacity="0.08"/>
+    <circle cx="657.5" cy="103.5" r="0.8" opacity="0.10"/>
+    <circle cx="185.0" cy="95.2" r="0.6" opacity="0.10"/>
+    <circle cx="1000.5" cy="528.2" r="0.5" opacity="0.21"/>
+    <circle cx="94.2" cy="174.6" r="0.4" opacity="0.12"/>
+    <circle cx="242.2" cy="211.7" r="0.6" opacity="0.17"/>
+    <circle cx="567.0" cy="452.9" r="0.5" opacity="0.13"/>
+    <circle cx="782.5" cy="170.8" r="0.4" opacity="0.19"/>
+    <circle cx="1008.5" cy="296.9" r="0.5" opacity="0.22"/>
+    <circle cx="239.2" cy="179.0" r="0.6" opacity="0.21"/>
+    <circle cx="1228.6" cy="446.4" r="0.8" opacity="0.17"/>
+    <circle cx="653.7" cy="147.3" r="0.5" opacity="0.09"/>
+    <circle cx="626.7" cy="336.4" r="0.8" opacity="0.11"/>
+    <circle cx="352.5" cy="438.5" r="0.8" opacity="0.09"/>
+    <circle cx="437.2" cy="482.3" r="0.5" opacity="0.09"/>
+    <circle cx="21.9" cy="24.1" r="0.8" opacity="0.16"/>
+    <circle cx="806.7" cy="486.0" r="0.6" opacity="0.18"/>
+    <circle cx="600.7" cy="592.4" r="0.8" opacity="0.13"/>
+    <circle cx="234.1" cy="505.0" r="0.8" opacity="0.19"/>
+    <circle cx="1369.8" cy="313.0" r="0.8" opacity="0.17"/>
+    <circle cx="1202.4" cy="490.5" r="0.5" opacity="0.15"/>
+    <circle cx="918.8" cy="75.9" r="0.5" opacity="0.20"/>
+    <circle cx="45.1" cy="556.6" r="0.5" opacity="0.09"/>
+    <circle cx="651.9" cy="134.6" r="0.6" opacity="0.13"/>
+    <circle cx="205.6" cy="71.1" r="0.8" opacity="0.14"/>
+    <circle cx="1241.9" cy="379.9" r="0.6" opacity="0.22"/>
+    <circle cx="350.4" cy="590.6" r="0.4" opacity="0.20"/>
+    <circle cx="266.8" cy="421.6" r="0.5" opacity="0.10"/>
+    <circle cx="109.2" cy="55.9" r="0.6" opacity="0.20"/>
+    <circle cx="45.7" cy="272.9" r="0.5" opacity="0.12"/>
+    <circle cx="286.0" cy="343.2" r="0.5" opacity="0.11"/>
+    <circle cx="1218.8" cy="351.2" r="0.8" opacity="0.14"/>
+    <circle cx="1189.9" cy="70.5" r="0.4" opacity="0.19"/>
+    <circle cx="1256.0" cy="168.0" r="0.8" opacity="0.18"/>
+    <circle cx="93.1" cy="194.2" r="0.8" opacity="0.17"/>
+    <circle cx="1226.5" cy="120.4" r="0.6" opacity="0.19"/>
+    <circle cx="34.7" cy="557.4" r="0.8" opacity="0.09"/>
+    <circle cx="1298.0" cy="344.9" r="0.5" opacity="0.20"/>
+    <circle cx="1319.1" cy="204.1" r="0.8" opacity="0.22"/>
+    <circle cx="313.7" cy="142.5" r="0.8" opacity="0.09"/>
+    <circle cx="724.8" cy="586.6" r="0.5" opacity="0.19"/>
+    <circle cx="310.0" cy="175.7" r="0.6" opacity="0.09"/>
+    <circle cx="254.0" cy="509.0" r="0.8" opacity="0.14"/>
+    <circle cx="203.1" cy="201.4" r="0.4" opacity="0.22"/>
+    <circle cx="911.4" cy="157.0" r="0.5" opacity="0.17"/>
+    <circle cx="17.5" cy="582.2" r="0.8" opacity="0.08"/>
+    <circle cx="559.2" cy="410.8" r="0.6" opacity="0.15"/>
+    <circle cx="806.3" cy="415.7" r="0.8" opacity="0.20"/>
+    <circle cx="66.1" cy="99.1" r="0.5" opacity="0.12"/>
+    <circle cx="368.6" cy="132.6" r="0.8" opacity="0.14"/>
+    <circle cx="703.4" cy="153.3" r="0.8" opacity="0.17"/>
+    <circle cx="809.1" cy="414.3" r="0.8" opacity="0.08"/>
+    <circle cx="29.1" cy="160.3" r="0.5" opacity="0.13"/>
+    <circle cx="628.0" cy="199.4" r="0.6" opacity="0.15"/>
+    <circle cx="1200.0" cy="115.7" r="0.4" opacity="0.21"/>
+    <circle cx="940.1" cy="349.4" r="0.6" opacity="0.14"/>
+    <circle cx="1179.5" cy="23.8" r="0.4" opacity="0.19"/>
+    <circle cx="1360.8" cy="81.0" r="0.6" opacity="0.21"/>
+    <circle cx="186.3" cy="421.1" r="0.4" opacity="0.20"/>
+    <circle cx="251.9" cy="327.9" r="0.4" opacity="0.18"/>
+    <circle cx="123.9" cy="553.1" r="0.8" opacity="0.09"/>
+    <circle cx="1218.8" cy="332.0" r="0.5" opacity="0.11"/>
+    <circle cx="317.9" cy="347.1" r="0.6" opacity="0.14"/>
+    <circle cx="900.6" cy="325.2" r="0.4" opacity="0.21"/>
+    <circle cx="349.2" cy="582.5" r="0.5" opacity="0.10"/>
+    <circle cx="504.2" cy="229.2" r="0.4" opacity="0.16"/>
+    <circle cx="269.3" cy="275.2" r="0.5" opacity="0.13"/>
+    <circle cx="811.3" cy="198.5" r="0.5" opacity="0.16"/>
+    <circle cx="629.9" cy="280.5" r="0.4" opacity="0.16"/>
+  </g>
+  <path class="constellation-thread" d="M 110.0 395.0 C 127.5 348.3, 175.8 156.7, 215.0 115.0 C 254.2 73.3, 336.7 83.3, 345.0 145.0 C 353.3 206.7, 256.7 454.2, 265.0 485.0 C 273.3 515.8, 358.3 326.7, 395.0 330.0 C 431.7 333.3, 462.5 522.5, 485.0 505.0 C 507.5 487.5, 501.7 237.5, 530.0 225.0 C 558.3 212.5, 611.7 420.0, 655.0 430.0 C 698.3 440.0, 750.0 275.8, 790.0 285.0 C 830.0 294.2, 862.5 494.2, 895.0 485.0 C 927.5 475.8, 954.2 241.7, 985.0 230.0 C 1015.8 218.3, 1048.3 414.2, 1080.0 415.0 C 1111.7 415.8, 1145.8 223.3, 1175.0 235.0 C 1204.2 246.7, 1232.5 502.5, 1255.0 485.0 C 1277.5 467.5, 1300.8 189.2, 1310.0 130.0" fill="none"/>
+  <g class="stars-layer">
+    <g class="era-group" data-era="antiquity">
+      <circle class="era-hub-glow" cx="110" cy="395" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-antiquity" href="antiquity.html"><title>Antiquity — era overview</title><circle class="hub-hit" cx="110" cy="395" r="10"/><circle class="era-hub" cx="110" cy="395" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-antiquity-plato" href="plato.html"><title>Plato</title><circle class="star-hit" cx="128.7" cy="398.7" r="6"/><circle class="thinker-star" cx="128.7" cy="398.7" r="2.57"/></a>
+      <a class="star-link" data-id="t-antiquity-aristotle" href="aristotle.html"><title>Aristotle</title><circle class="star-hit" cx="85.5" cy="402.1" r="6"/><circle class="thinker-star" cx="85.5" cy="402.1" r="1.97"/></a>
+      <a class="star-link" data-id="t-antiquity-stoics" href="stoics.html"><title>The Stoics</title><circle class="star-hit" cx="124.9" cy="376.7" r="6"/><circle class="thinker-star" cx="124.9" cy="376.7" r="2.64"/></a>
+      <a class="star-link" data-id="t-antiquity-pre-plotinus" href="pre-plotinus.html"><title>Before Plotinus</title><circle class="star-hit" cx="129.2" cy="415.3" r="6"/><circle class="thinker-star" cx="129.2" cy="415.3" r="2.77"/></a>
+      <a class="star-link" data-id="t-antiquity-lucretius" href="lucretius.html"><title>Lucretius</title><circle class="star-hit" cx="88.6" cy="374.4" r="6"/><circle class="thinker-star" cx="88.6" cy="374.4" r="2.65"/></a>
+    </g>
+    <g class="era-group" data-era="south-asian">
+      <circle class="era-hub-glow" cx="215" cy="115" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-south-asian" href="south-asian.html"><title>South Asian — era overview</title><circle class="hub-hit" cx="215" cy="115" r="10"/><circle class="era-hub" cx="215" cy="115" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-south-asian-upanishads" href="upanishads.html"><title>Upaniṣads</title><circle class="star-hit" cx="234.1" cy="119.1" r="6"/><circle class="thinker-star" cx="234.1" cy="119.1" r="1.93"/></a>
+      <a class="star-link" data-id="t-south-asian-gautama" href="gautama.html"><title>Gautama</title><circle class="star-hit" cx="191.7" cy="115.0" r="6"/><circle class="thinker-star" cx="191.7" cy="115.0" r="1.92"/></a>
+      <a class="star-link" data-id="t-south-asian-nyaya" href="nyaya.html"><title>Nyāya</title><circle class="star-hit" cx="226.6" cy="95.4" r="6"/><circle class="thinker-star" cx="226.6" cy="95.4" r="2.71"/></a>
+      <a class="star-link" data-id="t-south-asian-isvarakrishna" href="isvarakrishna.html"><title>Īśvarakṛṣṇa</title><circle class="star-hit" cx="209.3" cy="136.5" r="6"/><circle class="thinker-star" cx="209.3" cy="136.5" r="2.40"/></a>
+      <a class="star-link" data-id="t-south-asian-patanjali" href="patanjali.html"><title>Patañjali</title><circle class="star-hit" cx="188.4" cy="104.1" r="6"/><circle class="thinker-star" cx="188.4" cy="104.1" r="1.91"/></a>
+      <a class="star-link" data-id="t-south-asian-nagarjuna" href="nagarjuna.html"><title>Nāgārjuna</title><circle class="star-hit" cx="244.8" cy="106.7" r="6"/><circle class="thinker-star" cx="244.8" cy="106.7" r="2.04"/></a>
+      <a class="star-link" data-id="t-south-asian-vasubandhu" href="vasubandhu.html"><title>Vasubandhu</title><circle class="star-hit" cx="201.6" cy="141.2" r="6"/><circle class="thinker-star" cx="201.6" cy="141.2" r="2.62"/></a>
+      <a class="star-link" data-id="t-south-asian-dignaga" href="dignaga.html"><title>Dignāga</title><circle class="star-hit" cx="220.1" cy="86.5" r="6"/><circle class="thinker-star" cx="220.1" cy="86.5" r="2.20"/></a>
+      <a class="star-link" data-id="t-south-asian-dharmakirti" href="dharmakirti.html"><title>Dharmakīrti</title><circle class="star-hit" cx="244.3" cy="129.5" r="6"/><circle class="thinker-star" cx="244.3" cy="129.5" r="2.67"/></a>
+      <a class="star-link" data-id="t-south-asian-shankara" href="shankara.html"><title>Śaṅkara</title><circle class="star-hit" cx="178.9" cy="112.5" r="6"/><circle class="thinker-star" cx="178.9" cy="112.5" r="2.38"/></a>
+      <a class="star-link" data-id="t-south-asian-shantarakshita" href="shantarakshita.html"><title>Śāntarakṣita</title><circle class="star-hit" cx="235.3" cy="88.0" r="6"/><circle class="thinker-star" cx="235.3" cy="88.0" r="2.38"/></a>
+      <a class="star-link" data-id="t-south-asian-kundakunda" href="kundakunda.html"><title>Kundakunda</title><circle class="star-hit" cx="213.4" cy="148.7" r="6"/><circle class="thinker-star" cx="213.4" cy="148.7" r="2.63"/></a>
+      <a class="star-link" data-id="t-south-asian-umasvati" href="umasvati.html"><title>Umāsvāti</title><circle class="star-hit" cx="189.7" cy="88.8" r="6"/><circle class="thinker-star" cx="189.7" cy="88.8" r="2.21"/></a>
+      <a class="star-link" data-id="t-south-asian-haribhadra" href="haribhadra.html"><title>Haribhadra</title><circle class="star-hit" cx="254.7" cy="115.7" r="6"/><circle class="thinker-star" cx="254.7" cy="115.7" r="1.94"/></a>
+      <a class="star-link" data-id="t-south-asian-hemacandra" href="hemacandra.html"><title>Hemacandra</title><circle class="star-hit" cx="174.3" cy="123.0" r="6"/><circle class="thinker-star" cx="174.3" cy="123.0" r="1.93"/></a>
+    </g>
+    <g class="era-group" data-era="east-asian">
+      <circle class="era-hub-glow" cx="345" cy="145" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-east-asian" href="east-asian.html"><title>East Asian — era overview</title><circle class="hub-hit" cx="345" cy="145" r="10"/><circle class="era-hub" cx="345" cy="145" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-east-asian-confucius" href="confucius.html"><title>Confucius</title><circle class="star-hit" cx="363.3" cy="146.4" r="6"/><circle class="thinker-star" cx="363.3" cy="146.4" r="2.77"/></a>
+      <a class="star-link" data-id="t-east-asian-dogen" href="dogen.html"><title>Dōgen</title><circle class="star-hit" cx="324.2" cy="148.1" r="6"/><circle class="thinker-star" cx="324.2" cy="148.1" r="2.07"/></a>
+      <a class="star-link" data-id="t-east-asian-fazang" href="fazang.html"><title>Fazang</title><circle class="star-hit" cx="367.2" cy="131.8" r="6"/><circle class="thinker-star" cx="367.2" cy="131.8" r="2.16"/></a>
+      <a class="star-link" data-id="t-east-asian-kuiji" href="kuiji.html"><title>Kuiji</title><circle class="star-hit" cx="353.2" cy="167.8" r="6"/><circle class="thinker-star" cx="353.2" cy="167.8" r="2.28"/></a>
+      <a class="star-link" data-id="t-east-asian-laozi" href="laozi.html"><title>Laozi</title><circle class="star-hit" cx="315.8" cy="145.0" r="6"/><circle class="thinker-star" cx="315.8" cy="145.0" r="2.06"/></a>
+      <a class="star-link" data-id="t-east-asian-mencius" href="mencius.html"><title>Mencius</title><circle class="star-hit" cx="374.6" cy="142.4" r="6"/><circle class="thinker-star" cx="374.6" cy="142.4" r="2.59"/></a>
+      <a class="star-link" data-id="t-east-asian-mozi" href="mozi.html"><title>Mozi</title><circle class="star-hit" cx="317.2" cy="157.8" r="6"/><circle class="thinker-star" cx="317.2" cy="157.8" r="2.05"/></a>
+      <a class="star-link" data-id="t-east-asian-wang-yangming" href="wang-yangming.html"><title>Wang Yangming</title><circle class="star-hit" cx="341.7" cy="116.7" r="6"/><circle class="thinker-star" cx="341.7" cy="116.7" r="2.30"/></a>
+      <a class="star-link" data-id="t-east-asian-xuanzang" href="xuanzang.html"><title>Xuanzang</title><circle class="star-hit" cx="377.4" cy="157.5" r="6"/><circle class="thinker-star" cx="377.4" cy="157.5" r="2.78"/></a>
+      <a class="star-link" data-id="t-east-asian-xunzi" href="xunzi.html"><title>Xunzi</title><circle class="star-hit" cx="308.6" cy="150.4" r="6"/><circle class="thinker-star" cx="308.6" cy="150.4" r="2.30"/></a>
+      <a class="star-link" data-id="t-east-asian-zhiyi" href="zhiyi.html"><title>Zhiyi</title><circle class="star-hit" cx="382.7" cy="138.4" r="6"/><circle class="thinker-star" cx="382.7" cy="138.4" r="2.76"/></a>
+      <a class="star-link" data-id="t-east-asian-zhu-xi" href="zhu-xi.html"><title>Zhu Xi</title><circle class="star-hit" cx="341.9" cy="177.2" r="6"/><circle class="thinker-star" cx="341.9" cy="177.2" r="2.35"/></a>
+      <a class="star-link" data-id="t-east-asian-zhuangzi" href="zhuangzi.html"><title>Zhuangzi</title><circle class="star-hit" cx="320.0" cy="118.8" r="6"/><circle class="thinker-star" cx="320.0" cy="118.8" r="2.60"/></a>
+    </g>
+    <g class="era-group" data-era="late-antiquity">
+      <circle class="era-hub-glow" cx="265" cy="485" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-late-antiquity" href="late-antiquity.html"><title>Late Antiquity — era overview</title><circle class="hub-hit" cx="265" cy="485" r="10"/><circle class="era-hub" cx="265" cy="485" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-late-antiquity-aphrodisias" href="aphrodisias.html"><title>Alexander of Aphrodisias</title><circle class="star-hit" cx="281.2" cy="493.0" r="6"/><circle class="thinker-star" cx="281.2" cy="493.0" r="2.20"/></a>
+      <a class="star-link" data-id="t-late-antiquity-plotinus" href="plotinus.html"><title>Plotinus</title><circle class="star-hit" cx="243.6" cy="492.5" r="6"/><circle class="thinker-star" cx="243.6" cy="492.5" r="2.21"/></a>
+      <a class="star-link" data-id="t-late-antiquity-augustine" href="augustine.html"><title>Augustine of Hippo</title><circle class="star-hit" cx="262.1" cy="463.4" r="6"/><circle class="thinker-star" cx="262.1" cy="463.4" r="2.28"/></a>
+      <a class="star-link" data-id="t-late-antiquity-pseudo-dionysius" href="pseudo-dionysius.html"><title>Pseudo-Dionysius</title><circle class="star-hit" cx="262.3" cy="510.7" r="6"/><circle class="thinker-star" cx="262.3" cy="510.7" r="2.12"/></a>
+      <a class="star-link" data-id="t-late-antiquity-boethius" href="boethius.html"><title>Boethius</title><circle class="star-hit" cx="243.5" cy="467.1" r="6"/><circle class="thinker-star" cx="243.5" cy="467.1" r="2.68"/></a>
+      <a class="star-link" data-id="t-late-antiquity-damascus" href="damascus.html"><title>John of Damascus</title><circle class="star-hit" cx="297.1" cy="487.1" r="6"/><circle class="thinker-star" cx="297.1" cy="487.1" r="2.71"/></a>
+      <a class="star-link" data-id="t-late-antiquity-maximus-confessor" href="maximus-confessor.html"><title>Maximus the Confessor</title><circle class="star-hit" cx="239.6" cy="504.8" r="6"/><circle class="thinker-star" cx="239.6" cy="504.8" r="2.59"/></a>
+    </g>
+    <g class="era-group" data-era="islamic">
+      <circle class="era-hub-glow" cx="395" cy="330" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-islamic" href="islamic.html"><title>Islamic — era overview</title><circle class="hub-hit" cx="395" cy="330" r="10"/><circle class="era-hub" cx="395" cy="330" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-islamic-al-farabi" href="al-farabi.html"><title>al-Fārābī</title><circle class="star-hit" cx="408.4" cy="341.4" r="6"/><circle class="thinker-star" cx="408.4" cy="341.4" r="2.56"/></a>
+      <a class="star-link" data-id="t-islamic-avicenna" href="avicenna.html"><title>Avicenna (Ibn Sīnā)</title><circle class="star-hit" cx="376.4" cy="342.5" r="6"/><circle class="thinker-star" cx="376.4" cy="342.5" r="2.20"/></a>
+      <a class="star-link" data-id="t-islamic-averroes" href="averroes.html"><title>Averroes (Ibn Rushd)</title><circle class="star-hit" cx="405.8" cy="308.8" r="6"/><circle class="thinker-star" cx="405.8" cy="308.8" r="2.19"/></a>
+      <a class="star-link" data-id="t-islamic-suhrawardi" href="suhrawardi.html"><title>Suhrawardī</title><circle class="star-hit" cx="403.9" cy="352.4" r="6"/><circle class="thinker-star" cx="403.9" cy="352.4" r="2.65"/></a>
+      <a class="star-link" data-id="t-islamic-al-ghazali" href="al-ghazali.html"><title>al-Ghazālī</title><circle class="star-hit" cx="373.6" cy="310.6" r="6"/><circle class="thinker-star" cx="373.6" cy="310.6" r="2.38"/></a>
+      <a class="star-link" data-id="t-islamic-arabi" href="arabi.html"><title>Ibn Arabi</title><circle class="star-hit" cx="428.5" cy="336.0" r="6"/><circle class="thinker-star" cx="428.5" cy="336.0" r="1.97"/></a>
+      <a class="star-link" data-id="t-islamic-sadra" href="sadra.html"><title>Mullā Ṣadrā</title><circle class="star-hit" cx="389.8" cy="359.1" r="6"/><circle class="thinker-star" cx="389.8" cy="359.1" r="1.99"/></a>
+    </g>
+    <g class="era-group" data-era="jewish">
+      <circle class="era-hub-glow" cx="485" cy="505" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-jewish" href="jewish.html"><title>Jewish — era overview</title><circle class="hub-hit" cx="485" cy="505" r="10"/><circle class="era-hub" cx="485" cy="505" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-jewish-maimonides" href="maimonides.html"><title>Maimonides</title><circle class="star-hit" cx="503.9" cy="514.1" r="6"/><circle class="thinker-star" cx="503.9" cy="514.1" r="2.40"/></a>
+      <a class="star-link" data-id="t-jewish-gersonides" href="gersonides.html"><title>Gersonides (Ralbag)</title><circle class="star-hit" cx="459.6" cy="510.5" r="6"/><circle class="thinker-star" cx="459.6" cy="510.5" r="1.96"/></a>
+    </g>
+    <g class="era-group" data-era="scholasticism">
+      <circle class="era-hub-glow" cx="530" cy="225" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-scholasticism" href="scholasticism.html"><title>Scholasticism — era overview</title><circle class="hub-hit" cx="530" cy="225" r="10"/><circle class="era-hub" cx="530" cy="225" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-scholasticism-anselm" href="anselm.html"><title>Anselm of Canterbury</title><circle class="star-hit" cx="549.4" cy="224.6" r="6"/><circle class="thinker-star" cx="549.4" cy="224.6" r="2.30"/></a>
+      <a class="star-link" data-id="t-scholasticism-bonaventure" href="bonaventure.html"><title>Bonaventure</title><circle class="star-hit" cx="507.9" cy="225.0" r="6"/><circle class="thinker-star" cx="507.9" cy="225.0" r="2.60"/></a>
+      <a class="star-link" data-id="t-scholasticism-aquinas" href="aquinas.html"><title>Thomas Aquinas</title><circle class="star-hit" cx="531.0" cy="203.0" r="6"/><circle class="thinker-star" cx="531.0" cy="203.0" r="2.25"/></a>
+      <a class="star-link" data-id="t-scholasticism-henry-of-ghent" href="henry-of-ghent.html"><title>Henry of Ghent</title><circle class="star-hit" cx="539.9" cy="246.9" r="6"/><circle class="thinker-star" cx="539.9" cy="246.9" r="2.42"/></a>
+      <a class="star-link" data-id="t-scholasticism-olivi" href="olivi.html"><title>Peter John Olivi</title><circle class="star-hit" cx="519.3" cy="201.8" r="6"/><circle class="thinker-star" cx="519.3" cy="201.8" r="2.37"/></a>
+      <a class="star-link" data-id="t-scholasticism-ockham" href="ockham.html"><title>William of Ockham</title><circle class="star-hit" cx="561.6" cy="228.7" r="6"/><circle class="thinker-star" cx="561.6" cy="228.7" r="2.10"/></a>
+      <a class="star-link" data-id="t-scholasticism-chatton" href="chatton.html"><title>Walter Chatton</title><circle class="star-hit" cx="503.2" cy="238.8" r="6"/><circle class="thinker-star" cx="503.2" cy="238.8" r="1.99"/></a>
+      <a class="star-link" data-id="t-scholasticism-albert" href="albert.html"><title>Albert the Great</title><circle class="star-hit" cx="510.4" cy="200.2" r="6"/><circle class="thinker-star" cx="510.4" cy="200.2" r="1.95"/></a>
+      <a class="star-link" data-id="t-scholasticism-auriol" href="auriol.html"><title>Peter Auriol</title><circle class="star-hit" cx="548.3" cy="250.3" r="6"/><circle class="thinker-star" cx="548.3" cy="250.3" r="2.50"/></a>
+      <a class="star-link" data-id="t-scholasticism-buridan" href="buridan.html"><title>Jean Buridan</title><circle class="star-hit" cx="494.7" cy="235.6" r="6"/><circle class="thinker-star" cx="494.7" cy="235.6" r="2.74"/></a>
+      <a class="star-link" data-id="t-scholasticism-hadewijch" href="hadewijch.html"><title>Hadewijch</title><circle class="star-hit" cx="549.9" cy="199.3" r="6"/><circle class="thinker-star" cx="549.9" cy="199.3" r="2.12"/></a>
+      <a class="star-link" data-id="t-scholasticism-norwich" href="norwich.html"><title>Julian of Norwich</title><circle class="star-hit" cx="527.3" cy="257.8" r="6"/><circle class="thinker-star" cx="527.3" cy="257.8" r="2.08"/></a>
+      <a class="star-link" data-id="t-scholasticism-porete" href="porete.html"><title>Marguerite Porete</title><circle class="star-hit" cx="518.9" cy="192.7" r="6"/><circle class="thinker-star" cx="518.9" cy="192.7" r="2.78"/></a>
+      <a class="star-link" data-id="t-scholasticism-rimini" href="rimini.html"><title>Gregory of Rimini</title><circle class="star-hit" cx="570.0" cy="222.1" r="6"/><circle class="thinker-star" cx="570.0" cy="222.1" r="2.32"/></a>
+      <a class="star-link" data-id="t-scholasticism-roger-bacon" href="roger-bacon.html"><title>Roger Bacon</title><circle class="star-hit" cx="497.4" cy="245.7" r="6"/><circle class="thinker-star" cx="497.4" cy="245.7" r="2.29"/></a>
+      <a class="star-link" data-id="t-scholasticism-oresme" href="oresme.html"><title>Nicole Oresme</title><circle class="star-hit" cx="535.8" cy="190.8" r="6"/><circle class="thinker-star" cx="535.8" cy="190.8" r="1.96"/></a>
+    </g>
+    <g class="era-group" data-era="renaissance">
+      <circle class="era-hub-glow" cx="655" cy="430" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-renaissance" href="renaissance.html"><title>Renaissance — era overview</title><circle class="hub-hit" cx="655" cy="430" r="10"/><circle class="era-hub" cx="655" cy="430" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-renaissance-ficino" href="ficino.html"><title>Marsilio Ficino</title><circle class="star-hit" cx="670.5" cy="439.1" r="6"/><circle class="thinker-star" cx="670.5" cy="439.1" r="2.67"/></a>
+      <a class="star-link" data-id="t-renaissance-pomponazzi" href="pomponazzi.html"><title>Pietro Pomponazzi</title><circle class="star-hit" cx="637.2" cy="444.1" r="6"/><circle class="thinker-star" cx="637.2" cy="444.1" r="1.96"/></a>
+      <a class="star-link" data-id="t-renaissance-suarez" href="suarez.html"><title>Francisco Suárez</title><circle class="star-hit" cx="671.6" cy="412.5" r="6"/><circle class="thinker-star" cx="671.6" cy="412.5" r="2.27"/></a>
+      <a class="star-link" data-id="t-renaissance-avila" href="avila.html"><title>Teresa of Ávila</title><circle class="star-hit" cx="662.7" cy="453.3" r="6"/><circle class="thinker-star" cx="662.7" cy="453.3" r="2.24"/></a>
+      <a class="star-link" data-id="t-renaissance-cusa" href="cusa.html"><title>Nicholas of Cusa</title><circle class="star-hit" cx="625.2" cy="418.3" r="6"/><circle class="thinker-star" cx="625.2" cy="418.3" r="2.24"/></a>
+      <a class="star-link" data-id="t-renaissance-john-cross" href="john-cross.html"><title>John of the Cross</title><circle class="star-hit" cx="686.6" cy="433.2" r="6"/><circle class="thinker-star" cx="686.6" cy="433.2" r="2.74"/></a>
+    </g>
+    <g class="era-group" data-era="early-modern">
+      <circle class="era-hub-glow" cx="790" cy="285" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-early-modern" href="early-modern.html"><title>Early Modern — era overview</title><circle class="hub-hit" cx="790" cy="285" r="10"/><circle class="era-hub" cx="790" cy="285" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-early-modern-hobbes" href="hobbes.html"><title>Thomas Hobbes</title><circle class="star-hit" cx="806.6" cy="290.7" r="6"/><circle class="thinker-star" cx="806.6" cy="290.7" r="2.77"/></a>
+      <a class="star-link" data-id="t-early-modern-descartes" href="descartes.html"><title>René Descartes</title><circle class="star-hit" cx="766.2" cy="285.8" r="6"/><circle class="thinker-star" cx="766.2" cy="285.8" r="2.06"/></a>
+      <a class="star-link" data-id="t-early-modern-spinoza" href="spinoza.html"><title>Baruch Spinoza</title><circle class="star-hit" cx="809.6" cy="269.8" r="6"/><circle class="thinker-star" cx="809.6" cy="269.8" r="1.98"/></a>
+      <a class="star-link" data-id="t-early-modern-locke" href="locke.html"><title>John Locke</title><circle class="star-hit" cx="800.0" cy="306.6" r="6"/><circle class="thinker-star" cx="800.0" cy="306.6" r="2.15"/></a>
+      <a class="star-link" data-id="t-early-modern-leibniz" href="leibniz.html"><title>Gottfried Wilhelm Leibniz</title><circle class="star-hit" cx="765.9" cy="270.1" r="6"/><circle class="thinker-star" cx="765.9" cy="270.1" r="2.70"/></a>
+      <a class="star-link" data-id="t-early-modern-reid" href="reid.html"><title>Thomas Reid</title><circle class="star-hit" cx="822.0" cy="286.2" r="6"/><circle class="thinker-star" cx="822.0" cy="286.2" r="2.51"/></a>
+      <a class="star-link" data-id="t-early-modern-hume" href="hume.html"><title>David Hume</title><circle class="star-hit" cx="777.0" cy="309.6" r="6"/><circle class="thinker-star" cx="777.0" cy="309.6" r="1.97"/></a>
+      <a class="star-link" data-id="t-early-modern-shepherd" href="shepherd.html"><title>Mary Shepherd</title><circle class="star-hit" cx="785.7" cy="257.4" r="6"/><circle class="thinker-star" cx="785.7" cy="257.4" r="1.99"/></a>
+      <a class="star-link" data-id="t-early-modern-kant" href="kant.html"><title>Immanuel Kant</title><circle class="star-hit" cx="809.1" cy="310.4" r="6"/><circle class="thinker-star" cx="809.1" cy="310.4" r="2.74"/></a>
+      <a class="star-link" data-id="t-early-modern-berkeley" href="berkeley.html"><title>George Berkeley</title><circle class="star-hit" cx="756.5" cy="280.3" r="6"/><circle class="thinker-star" cx="756.5" cy="280.3" r="1.91"/></a>
+      <a class="star-link" data-id="t-early-modern-bohemia" href="bohemia.html"><title>Elisabeth of Bohemia</title><circle class="star-hit" cx="820.7" cy="269.3" r="6"/><circle class="thinker-star" cx="820.7" cy="269.3" r="2.39"/></a>
+      <a class="star-link" data-id="t-early-modern-butler" href="butler.html"><title>Joseph Butler</title><circle class="star-hit" cx="782.8" cy="316.5" r="6"/><circle class="thinker-star" cx="782.8" cy="316.5" r="2.58"/></a>
+      <a class="star-link" data-id="t-early-modern-cavendish" href="cavendish.html"><title>Margaret Cavendish</title><circle class="star-hit" cx="770.8" cy="254.9" r="6"/><circle class="thinker-star" cx="770.8" cy="254.9" r="2.57"/></a>
+      <a class="star-link" data-id="t-early-modern-chatelet" href="chatelet.html"><title>Émilie du Châtelet</title><circle class="star-hit" cx="826.3" cy="297.6" r="6"/><circle class="thinker-star" cx="826.3" cy="297.6" r="2.40"/></a>
+      <a class="star-link" data-id="t-early-modern-conway" href="conway.html"><title>Anne Conway</title><circle class="star-hit" cx="747.5" cy="281.2" r="6"/><circle class="thinker-star" cx="747.5" cy="281.2" r="2.20"/></a>
+      <a class="star-link" data-id="t-early-modern-diderot" href="diderot.html"><title>Denis Diderot</title><circle class="star-hit" cx="786.9" cy="248.4" r="6"/><circle class="thinker-star" cx="786.9" cy="248.4" r="2.24"/></a>
+      <a class="star-link" data-id="t-early-modern-la-mettrie" href="la-mettrie.html"><title>Julien Offray de La Mettrie</title><circle class="star-hit" cx="800.4" cy="319.8" r="6"/><circle class="thinker-star" cx="800.4" cy="319.8" r="2.60"/></a>
+      <a class="star-link" data-id="t-early-modern-masham" href="masham.html"><title>Damaris Cudworth Masham</title><circle class="star-hit" cx="757.7" cy="261.7" r="6"/><circle class="thinker-star" cx="757.7" cy="261.7" r="2.51"/></a>
+    </g>
+    <g class="era-group" data-era="nineteenth-century">
+      <circle class="era-hub-glow" cx="895" cy="485" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-nineteenth-century" href="nineteenth-century.html"><title>19th Century — era overview</title><circle class="hub-hit" cx="895" cy="485" r="10"/><circle class="era-hub" cx="895" cy="485" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-james-mill" href="james-mill.html"><title>James Mill</title><circle class="star-hit" cx="909.8" cy="494.0" r="6"/><circle class="thinker-star" cx="909.8" cy="494.0" r="2.54"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-herbart" href="herbart.html"><title>Johann Friedrich Herbart</title><circle class="star-hit" cx="874.4" cy="490.3" r="6"/><circle class="thinker-star" cx="874.4" cy="490.3" r="2.69"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-brown" href="brown.html"><title>Thomas Brown</title><circle class="star-hit" cx="908.4" cy="466.8" r="6"/><circle class="thinker-star" cx="908.4" cy="466.8" r="2.05"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-bolzano" href="bolzano.html"><title>Bernard Bolzano</title><circle class="star-hit" cx="894.5" cy="508.0" r="6"/><circle class="thinker-star" cx="894.5" cy="508.0" r="1.93"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-hamilton" href="hamilton.html"><title>William Hamilton</title><circle class="star-hit" cx="868.6" cy="480.9" r="6"/><circle class="thinker-star" cx="868.6" cy="480.9" r="2.04"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-js-mill" href="js-mill.html"><title>John Stuart Mill</title><circle class="star-hit" cx="924.5" cy="476.2" r="6"/><circle class="thinker-star" cx="924.5" cy="476.2" r="2.55"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-lotze" href="lotze.html"><title>Hermann Lotze</title><circle class="star-hit" cx="876.0" cy="505.5" r="6"/><circle class="thinker-star" cx="876.0" cy="505.5" r="2.43"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-bain" href="bain.html"><title>Alexander Bain</title><circle class="star-hit" cx="890.6" cy="457.6" r="6"/><circle class="thinker-star" cx="890.6" cy="457.6" r="2.55"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-hodgson" href="hodgson.html"><title>Shadworth Hodgson</title><circle class="star-hit" cx="925.8" cy="498.5" r="6"/><circle class="thinker-star" cx="925.8" cy="498.5" r="2.72"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-welby" href="welby.html"><title>Victoria Welby</title><circle class="star-hit" cx="861.9" cy="474.9" r="6"/><circle class="thinker-star" cx="861.9" cy="474.9" r="2.54"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-mach" href="mach.html"><title>Ernst Mach</title><circle class="star-hit" cx="914.0" cy="457.6" r="6"/><circle class="thinker-star" cx="914.0" cy="457.6" r="2.04"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-peirce" href="peirce.html"><title>Charles Sanders Peirce</title><circle class="star-hit" cx="900.9" cy="515.6" r="6"/><circle class="thinker-star" cx="900.9" cy="515.6" r="2.15"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-jones" href="jones.html"><title>E. E. Constance Jones</title><circle class="star-hit" cx="861.5" cy="465.9" r="6"/><circle class="thinker-star" cx="861.5" cy="465.9" r="2.46"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-frege" href="frege.html"><title>Gottlob Frege</title><circle class="star-hit" cx="934.0" cy="494.7" r="6"/><circle class="thinker-star" cx="934.0" cy="494.7" r="2.27"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-robertson" href="robertson.html"><title>George Croom Robertson</title><circle class="star-hit" cx="868.1" cy="509.8" r="6"/><circle class="thinker-star" cx="868.1" cy="509.8" r="2.47"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-ladd-franklin" href="ladd-franklin.html"><title>Christine Ladd-Franklin</title><circle class="star-hit" cx="905.8" cy="453.0" r="6"/><circle class="thinker-star" cx="905.8" cy="453.0" r="2.18"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-bergson" href="bergson.html"><title>Henri Bergson</title><circle class="star-hit" cx="909.4" cy="518.5" r="6"/><circle class="thinker-star" cx="909.4" cy="518.5" r="2.75"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-darwin" href="darwin.html"><title>Charles Darwin</title><circle class="star-hit" cx="867.2" cy="458.9" r="6"/><circle class="thinker-star" cx="867.2" cy="458.9" r="2.73"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-fechner" href="fechner.html"><title>Gustav Fechner</title><circle class="star-hit" cx="937.1" cy="481.5" r="6"/><circle class="thinker-star" cx="937.1" cy="481.5" r="1.90"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-fichte" href="fichte.html"><title>J. G. Fichte</title><circle class="star-hit" cx="877.0" cy="519.5" r="6"/><circle class="thinker-star" cx="877.0" cy="519.5" r="2.21"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-hegel" href="hegel.html"><title>G. W. F. Hegel</title><circle class="star-hit" cx="899.4" cy="446.6" r="6"/><circle class="thinker-star" cx="899.4" cy="446.6" r="2.69"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-ribot" href="ribot.html"><title>Théodule Ribot</title><circle class="star-hit" cx="931.6" cy="507.3" r="6"/><circle class="thinker-star" cx="931.6" cy="507.3" r="2.50"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-romanes" href="romanes.html"><title>George Romanes</title><circle class="star-hit" cx="859.2" cy="508.7" r="6"/><circle class="thinker-star" cx="859.2" cy="508.7" r="2.25"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-schelling" href="schelling.html"><title>F. W. J. Schelling</title><circle class="star-hit" cx="918.6" cy="449.6" r="6"/><circle class="thinker-star" cx="918.6" cy="449.6" r="2.35"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-schopenhauer" href="schopenhauer.html"><title>Arthur Schopenhauer</title><circle class="star-hit" cx="888.8" cy="523.8" r="6"/><circle class="thinker-star" cx="888.8" cy="523.8" r="2.63"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-lange" href="lange.html"><title>Carl Georg Lange</title><circle class="star-hit" cx="852.6" cy="464.6" r="6"/><circle class="thinker-star" cx="852.6" cy="464.6" r="2.20"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-morgan" href="morgan.html"><title>C. Lloyd Morgan</title><circle class="star-hit" cx="940.0" cy="504.3" r="6"/><circle class="thinker-star" cx="940.0" cy="504.3" r="2.59"/></a>
+      <a class="star-link" data-id="t-nineteenth-century-butler" href="butler.html"><title>Samuel Butler</title><circle class="star-hit" cx="849.7" cy="498.1" r="6"/><circle class="thinker-star" cx="849.7" cy="498.1" r="2.35"/></a>
+    </g>
+    <g class="era-group" data-era="phenomenology">
+      <circle class="era-hub-glow" cx="985" cy="230" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-phenomenology" href="phenomenology.html"><title>Phenomenology — era overview</title><circle class="hub-hit" cx="985" cy="230" r="10"/><circle class="era-hub" cx="985" cy="230" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-phenomenology-brentano" href="brentano.html"><title>Franz Brentano</title><circle class="star-hit" cx="998.6" cy="241.3" r="6"/><circle class="thinker-star" cx="998.6" cy="241.3" r="2.20"/></a>
+      <a class="star-link" data-id="t-phenomenology-stumpf" href="stumpf.html"><title>Carl Stumpf</title><circle class="star-hit" cx="963.2" cy="234.4" r="6"/><circle class="thinker-star" cx="963.2" cy="234.4" r="2.66"/></a>
+      <a class="star-link" data-id="t-phenomenology-stout" href="stout.html"><title>G. F. Stout</title><circle class="star-hit" cx="1002.9" cy="215.5" r="6"/><circle class="thinker-star" cx="1002.9" cy="215.5" r="2.40"/></a>
+      <a class="star-link" data-id="t-phenomenology-twardowski" href="twardowski.html"><title>Kazimierz Twardowski</title><circle class="star-hit" cx="999.1" cy="251.0" r="6"/><circle class="thinker-star" cx="999.1" cy="251.0" r="2.11"/></a>
+      <a class="star-link" data-id="t-phenomenology-husserl" href="husserl.html"><title>Edmund Husserl</title><circle class="star-hit" cx="965.6" cy="212.6" r="6"/><circle class="thinker-star" cx="965.6" cy="212.6" r="2.52"/></a>
+      <a class="star-link" data-id="t-phenomenology-heidegger" href="heidegger.html"><title>Martin Heidegger</title><circle class="star-hit" cx="1015.5" cy="227.1" r="6"/><circle class="thinker-star" cx="1015.5" cy="227.1" r="1.91"/></a>
+      <a class="star-link" data-id="t-phenomenology-sartre" href="sartre.html"><title>Jean-Paul Sartre</title><circle class="star-hit" cx="956.3" cy="242.0" r="6"/><circle class="thinker-star" cx="956.3" cy="242.0" r="2.46"/></a>
+      <a class="star-link" data-id="t-phenomenology-merleau-ponty" href="merleau-ponty.html"><title>Maurice Merleau-Ponty</title><circle class="star-hit" cx="982.4" cy="200.7" r="6"/><circle class="thinker-star" cx="982.4" cy="200.7" r="2.70"/></a>
+      <a class="star-link" data-id="t-phenomenology-kohler" href="kohler.html"><title>Wolfgang Köhler</title><circle class="star-hit" cx="1017.6" cy="240.4" r="6"/><circle class="thinker-star" cx="1017.6" cy="240.4" r="1.99"/></a>
+      <a class="star-link" data-id="t-phenomenology-mead" href="mead.html"><title>George Herbert Mead</title><circle class="star-hit" cx="950.1" cy="223.7" r="6"/><circle class="thinker-star" cx="950.1" cy="223.7" r="2.56"/></a>
+      <a class="star-link" data-id="t-phenomenology-piaget" href="piaget.html"><title>Jean Piaget</title><circle class="star-hit" cx="1009.2" cy="205.9" r="6"/><circle class="thinker-star" cx="1009.2" cy="205.9" r="2.33"/></a>
+      <a class="star-link" data-id="t-phenomenology-scheler" href="scheler.html"><title>Max Scheler</title><circle class="star-hit" cx="989.0" cy="262.6" r="6"/><circle class="thinker-star" cx="989.0" cy="262.6" r="2.35"/></a>
+      <a class="star-link" data-id="t-phenomenology-uexkull" href="uexkull.html"><title>Jakob von Uexküll</title><circle class="star-hit" cx="957.7" cy="206.8" r="6"/><circle class="thinker-star" cx="957.7" cy="206.8" r="1.92"/></a>
+      <a class="star-link" data-id="t-phenomenology-bruner" href="bruner.html"><title>Jerome Bruner</title><circle class="star-hit" cx="1023.8" cy="231.3" r="6"/><circle class="thinker-star" cx="1023.8" cy="231.3" r="1.99"/></a>
+      <a class="star-link" data-id="t-phenomenology-luria" href="luria.html"><title>Alexander Luria</title><circle class="star-hit" cx="944.4" cy="232.6" r="6"/><circle class="thinker-star" cx="944.4" cy="232.6" r="2.51"/></a>
+      <a class="star-link" data-id="t-phenomenology-durkheim" href="durkheim.html"><title>Émile Durkheim</title><circle class="star-hit" cx="1000.4" cy="197.4" r="6"/><circle class="thinker-star" cx="1000.4" cy="197.4" r="2.15"/></a>
+      <a class="star-link" data-id="t-phenomenology-fanon" href="fanon.html"><title>Frantz Fanon</title><circle class="star-hit" cx="1020.6" cy="251.8" r="6"/><circle class="thinker-star" cx="1020.6" cy="251.8" r="2.38"/></a>
+      <a class="star-link" data-id="t-phenomenology-vygotsky" href="vygotsky.html"><title>Lev Vygotsky</title><circle class="star-hit" cx="941.4" cy="221.4" r="6"/><circle class="thinker-star" cx="941.4" cy="221.4" r="1.93"/></a>
+    </g>
+    <g class="era-group" data-era="analytic">
+      <circle class="era-hub-glow" cx="1080" cy="415" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-analytic" href="analytic.html"><title>Analytic — era overview</title><circle class="hub-hit" cx="1080" cy="415" r="10"/><circle class="era-hub" cx="1080" cy="415" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-analytic-james" href="james.html"><title>William James</title><circle class="star-hit" cx="1096.1" cy="424.5" r="6"/><circle class="thinker-star" cx="1096.1" cy="424.5" r="2.74"/></a>
+      <a class="star-link" data-id="t-analytic-ryle" href="ryle.html"><title>Gilbert Ryle</title><circle class="star-hit" cx="1058.4" cy="414.7" r="6"/><circle class="thinker-star" cx="1058.4" cy="414.7" r="2.57"/></a>
+      <a class="star-link" data-id="t-analytic-turing" href="turing.html"><title>Alan Turing</title><circle class="star-hit" cx="1083.2" cy="394.6" r="6"/><circle class="thinker-star" cx="1083.2" cy="394.6" r="2.51"/></a>
+      <a class="star-link" data-id="t-analytic-place-smart" href="place-smart.html"><title>U. T. Place &amp; J. J. C. Smart</title><circle class="star-hit" cx="1091.2" cy="435.1" r="6"/><circle class="thinker-star" cx="1091.2" cy="435.1" r="2.49"/></a>
+      <a class="star-link" data-id="t-analytic-davidson" href="davidson.html"><title>Donald Davidson</title><circle class="star-hit" cx="1067.9" cy="392.9" r="6"/><circle class="thinker-star" cx="1067.9" cy="392.9" r="2.67"/></a>
+      <a class="star-link" data-id="t-analytic-putnam" href="putnam.html"><title>Hilary Putnam</title><circle class="star-hit" cx="1107.2" cy="405.7" r="6"/><circle class="thinker-star" cx="1107.2" cy="405.7" r="2.28"/></a>
+      <a class="star-link" data-id="t-analytic-fodor" href="fodor.html"><title>Jerry Fodor</title><circle class="star-hit" cx="1054.2" cy="429.8" r="6"/><circle class="thinker-star" cx="1054.2" cy="429.8" r="2.66"/></a>
+      <a class="star-link" data-id="t-analytic-lewis" href="lewis.html"><title>David Lewis</title><circle class="star-hit" cx="1076.1" cy="387.1" r="6"/><circle class="thinker-star" cx="1076.1" cy="387.1" r="2.71"/></a>
+      <a class="star-link" data-id="t-analytic-nagel" href="nagel.html"><title>Thomas Nagel</title><circle class="star-hit" cx="1106.7" cy="433.9" r="6"/><circle class="thinker-star" cx="1106.7" cy="433.9" r="2.41"/></a>
+      <a class="star-link" data-id="t-analytic-dennett" href="dennett.html"><title>Daniel Dennett</title><circle class="star-hit" cx="1045.3" cy="409.9" r="6"/><circle class="thinker-star" cx="1045.3" cy="409.9" r="2.71"/></a>
+      <a class="star-link" data-id="t-analytic-searle" href="searle.html"><title>John Searle</title><circle class="star-hit" cx="1116.2" cy="404.7" r="6"/><circle class="thinker-star" cx="1116.2" cy="404.7" r="2.19"/></a>
+      <a class="star-link" data-id="t-analytic-block" href="block.html"><title>Ned Block</title><circle class="star-hit" cx="1055.7" cy="438.7" r="6"/><circle class="thinker-star" cx="1055.7" cy="438.7" r="1.94"/></a>
+      <a class="star-link" data-id="t-analytic-rosenthal" href="rosenthal.html"><title>David Rosenthal</title><circle class="star-hit" cx="1067.9" cy="383.4" r="6"/><circle class="thinker-star" cx="1067.9" cy="383.4" r="1.96"/></a>
+      <a class="star-link" data-id="t-analytic-chalmers" href="chalmers.html"><title>David Chalmers</title><circle class="star-hit" cx="1117.7" cy="422.7" r="6"/><circle class="thinker-star" cx="1117.7" cy="422.7" r="2.24"/></a>
+      <a class="star-link" data-id="t-analytic-russell" href="russell.html"><title>Bertrand Russell</title><circle class="star-hit" cx="1045.9" cy="433.5" r="6"/><circle class="thinker-star" cx="1045.9" cy="433.5" r="2.34"/></a>
+      <a class="star-link" data-id="t-analytic-whitehead" href="whitehead.html"><title>Alfred North Whitehead</title><circle class="star-hit" cx="1105.5" cy="389.7" r="6"/><circle class="thinker-star" cx="1105.5" cy="389.7" r="2.78"/></a>
+      <a class="star-link" data-id="t-analytic-quine" href="quine.html"><title>W. V. O. Quine</title><circle class="star-hit" cx="1091.4" cy="448.5" r="6"/><circle class="thinker-star" cx="1091.4" cy="448.5" r="2.76"/></a>
+      <a class="star-link" data-id="t-analytic-gilbert" href="gilbert.html"><title>Margaret Gilbert</title><circle class="star-hit" cx="1045.3" cy="394.6" r="6"/><circle class="thinker-star" cx="1045.3" cy="394.6" r="1.99"/></a>
+      <a class="star-link" data-id="t-analytic-brandom" href="brandom.html"><title>Robert Brandom</title><circle class="star-hit" cx="1117.0" cy="395.7" r="6"/><circle class="thinker-star" cx="1117.0" cy="395.7" r="2.51"/></a>
+      <a class="star-link" data-id="t-analytic-anscombe" href="anscombe.html"><title>G. E. M. Anscombe</title><circle class="star-hit" cx="1074.1" cy="452.7" r="6"/><circle class="thinker-star" cx="1074.1" cy="452.7" r="2.32"/></a>
+      <a class="star-link" data-id="t-analytic-bratman" href="bratman.html"><title>Michael Bratman</title><circle class="star-hit" cx="1086.5" cy="378.5" r="6"/><circle class="thinker-star" cx="1086.5" cy="378.5" r="2.24"/></a>
+      <a class="star-link" data-id="t-analytic-wittgenstein" href="wittgenstein.html"><title>Ludwig Wittgenstein</title><circle class="star-hit" cx="1124.2" cy="429.0" r="6"/><circle class="thinker-star" cx="1124.2" cy="429.0" r="2.47"/></a>
+      <a class="star-link" data-id="t-analytic-strawson" href="strawson.html"><title>P. F. Strawson &amp; Galen Strawson</title><circle class="star-hit" cx="1036.4" cy="406.3" r="6"/><circle class="thinker-star" cx="1036.4" cy="406.3" r="2.48"/></a>
+      <a class="star-link" data-id="t-analytic-pettit" href="pettit.html"><title>Philip Pettit</title><circle class="star-hit" cx="1114.2" cy="387.1" r="6"/><circle class="thinker-star" cx="1114.2" cy="387.1" r="2.11"/></a>
+      <a class="star-link" data-id="t-analytic-cavell" href="cavell.html"><title>Stanley Cavell</title><circle class="star-hit" cx="1082.8" cy="455.1" r="6"/><circle class="thinker-star" cx="1082.8" cy="455.1" r="2.40"/></a>
+      <a class="star-link" data-id="t-analytic-tuomela" href="tuomela.html"><title>Raimo Tuomela</title><circle class="star-hit" cx="1072.2" cy="375.5" r="6"/><circle class="thinker-star" cx="1072.2" cy="375.5" r="2.30"/></a>
+      <a class="star-link" data-id="t-analytic-list" href="list.html"><title>Christian List</title><circle class="star-hit" cx="1125.0" cy="400.6" r="6"/><circle class="thinker-star" cx="1125.0" cy="400.6" r="2.48"/></a>
+      <a class="star-link" data-id="t-analytic-sellars" href="sellars.html"><title>Wilfrid Sellars</title><circle class="star-hit" cx="1035.9" cy="432.6" r="6"/><circle class="thinker-star" cx="1035.9" cy="432.6" r="2.24"/></a>
+    </g>
+    <g class="era-group" data-era="consciousness-science">
+      <circle class="era-hub-glow" cx="1175" cy="235" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-consciousness-science" href="consciousness-science.html"><title>Consciousness Science — era overview</title><circle class="hub-hit" cx="1175" cy="235" r="10"/><circle class="era-hub" cx="1175" cy="235" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-consciousness-science-baars" href="baars.html"><title>Bernard Baars</title><circle class="star-hit" cx="1192.0" cy="242.7" r="6"/><circle class="thinker-star" cx="1192.0" cy="242.7" r="2.48"/></a>
+      <a class="star-link" data-id="t-consciousness-science-dehaene" href="dehaene.html"><title>Stanislas Dehaene</title><circle class="star-hit" cx="1153.3" cy="242.0" r="6"/><circle class="thinker-star" cx="1153.3" cy="242.0" r="2.05"/></a>
+      <a class="star-link" data-id="t-consciousness-science-tononi" href="tononi.html"><title>Giulio Tononi</title><circle class="star-hit" cx="1177.7" cy="212.8" r="6"/><circle class="thinker-star" cx="1177.7" cy="212.8" r="2.44"/></a>
+      <a class="star-link" data-id="t-consciousness-science-lamme" href="lamme.html"><title>Victor Lamme</title><circle class="star-hit" cx="1193.7" cy="251.6" r="6"/><circle class="thinker-star" cx="1193.7" cy="251.6" r="2.46"/></a>
+      <a class="star-link" data-id="t-consciousness-science-graziano" href="graziano.html"><title>Michael Graziano</title><circle class="star-hit" cx="1154.9" cy="219.2" r="6"/><circle class="thinker-star" cx="1154.9" cy="219.2" r="2.33"/></a>
+      <a class="star-link" data-id="t-consciousness-science-seth" href="seth.html"><title>Anil Seth</title><circle class="star-hit" cx="1206.1" cy="230.3" r="6"/><circle class="thinker-star" cx="1206.1" cy="230.3" r="2.49"/></a>
+      <a class="star-link" data-id="t-consciousness-science-solms" href="solms.html"><title>Mark Solms</title><circle class="star-hit" cx="1153.1" cy="252.9" r="6"/><circle class="thinker-star" cx="1153.1" cy="252.9" r="2.63"/></a>
+      <a class="star-link" data-id="t-consciousness-science-friston-hohwy-clark" href="friston-hohwy-clark.html"><title>Friston, Hohwy &amp; Clark</title><circle class="star-hit" cx="1159.7" cy="211.6" r="6"/><circle class="thinker-star" cx="1159.7" cy="211.6" r="2.19"/></a>
+      <a class="star-link" data-id="t-consciousness-science-varela-thompson-rosch" href="varela-thompson-rosch.html"><title>Varela, Thompson &amp; Rosch</title><circle class="star-hit" cx="1202.3" cy="254.4" r="6"/><circle class="thinker-star" cx="1202.3" cy="254.4" r="2.59"/></a>
+      <a class="star-link" data-id="t-consciousness-science-clark" href="clark.html"><title>Andy Clark</title><circle class="star-hit" cx="1145.9" cy="220.3" r="6"/><circle class="thinker-star" cx="1145.9" cy="220.3" r="2.05"/></a>
+      <a class="star-link" data-id="t-consciousness-science-barrett" href="barrett.html"><title>Lisa Feldman Barrett</title><circle class="star-hit" cx="1203.6" cy="219.0" r="6"/><circle class="thinker-star" cx="1203.6" cy="219.0" r="1.96"/></a>
+      <a class="star-link" data-id="t-consciousness-science-bion" href="bion.html"><title>Wilfred Bion</title><circle class="star-hit" cx="1159.7" cy="264.6" r="6"/><circle class="thinker-star" cx="1159.7" cy="264.6" r="2.77"/></a>
+      <a class="star-link" data-id="t-consciousness-science-cannon" href="cannon.html"><title>Walter B. Cannon</title><circle class="star-hit" cx="1161.4" cy="202.7" r="6"/><circle class="thinker-star" cx="1161.4" cy="202.7" r="2.37"/></a>
+      <a class="star-link" data-id="t-consciousness-science-damasio" href="damasio.html"><title>Antonio Damasio</title><circle class="star-hit" cx="1210.8" cy="250.7" r="6"/><circle class="thinker-star" cx="1210.8" cy="250.7" r="1.91"/></a>
+      <a class="star-link" data-id="t-consciousness-science-griffin" href="griffin.html"><title>Donald Griffin</title><circle class="star-hit" cx="1146.2" cy="258.6" r="6"/><circle class="thinker-star" cx="1146.2" cy="258.6" r="2.07"/></a>
+      <a class="star-link" data-id="t-consciousness-science-klein" href="klein.html"><title>Melanie Klein</title><circle class="star-hit" cx="1192.0" cy="203.7" r="6"/><circle class="thinker-star" cx="1192.0" cy="203.7" r="2.03"/></a>
+      <a class="star-link" data-id="t-consciousness-science-ledoux" href="ledoux.html"><title>Joseph LeDoux</title><circle class="star-hit" cx="1192.2" cy="267.2" r="6"/><circle class="thinker-star" cx="1192.2" cy="267.2" r="2.13"/></a>
+      <a class="star-link" data-id="t-consciousness-science-lorenz" href="lorenz.html"><title>Konrad Lorenz</title><circle class="star-hit" cx="1137.2" cy="222.7" r="6"/><circle class="thinker-star" cx="1137.2" cy="222.7" r="2.33"/></a>
+      <a class="star-link" data-id="t-consciousness-science-panksepp" href="panksepp.html"><title>Jaak Panksepp</title><circle class="star-hit" cx="1210.9" cy="213.8" r="6"/><circle class="thinker-star" cx="1210.9" cy="213.8" r="2.31"/></a>
+      <a class="star-link" data-id="t-consciousness-science-tinbergen" href="tinbergen.html"><title>Nikolaas Tinbergen</title><circle class="star-hit" cx="1175.5" cy="273.0" r="6"/><circle class="thinker-star" cx="1175.5" cy="273.0" r="2.76"/></a>
+      <a class="star-link" data-id="t-consciousness-science-janet" href="janet.html"><title>Pierre Janet</title><circle class="star-hit" cx="1174.2" cy="197.4" r="6"/><circle class="thinker-star" cx="1174.2" cy="197.4" r="2.45"/></a>
+      <a class="star-link" data-id="t-consciousness-science-freud" href="freud.html"><title>Sigmund Freud</title><circle class="star-hit" cx="1207.7" cy="263.2" r="6"/><circle class="thinker-star" cx="1207.7" cy="263.2" r="2.65"/></a>
+      <a class="star-link" data-id="t-consciousness-science-waal" href="waal.html"><title>Frans de Waal</title><circle class="star-hit" cx="1128.2" cy="222.1" r="6"/><circle class="thinker-star" cx="1128.2" cy="222.1" r="2.63"/></a>
+      <a class="star-link" data-id="t-consciousness-science-winnicott" href="winnicott.html"><title>D. W. Winnicott</title><circle class="star-hit" cx="1190.3" cy="194.9" r="6"/><circle class="thinker-star" cx="1190.3" cy="194.9" r="2.67"/></a>
+      <a class="star-link" data-id="t-consciousness-science-tomasello" href="tomasello.html"><title>Michael Tomasello</title><circle class="star-hit" cx="1187.7" cy="275.0" r="6"/><circle class="thinker-star" cx="1187.7" cy="275.0" r="2.62"/></a>
+      <a class="star-link" data-id="t-consciousness-science-colombetti" href="colombetti.html"><title>Giovanna Colombetti</title><circle class="star-hit" cx="1145.9" cy="203.4" r="6"/><circle class="thinker-star" cx="1145.9" cy="203.4" r="2.62"/></a>
+    </g>
+    <g class="era-group" data-era="machine-minds">
+      <circle class="era-hub-glow" cx="1255" cy="485" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-machine-minds" href="machine-minds.html"><title>Machine Minds — era overview</title><circle class="hub-hit" cx="1255" cy="485" r="10"/><circle class="era-hub" cx="1255" cy="485" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-machine-minds-aleksander" href="aleksander.html"><title>Igor Aleksander</title><circle class="star-hit" cx="1269.5" cy="496.7" r="6"/><circle class="thinker-star" cx="1269.5" cy="496.7" r="2.71"/></a>
+      <a class="star-link" data-id="t-machine-minds-haikonen" href="haikonen.html"><title>Pentti Haikonen</title><circle class="star-hit" cx="1235.0" cy="496.5" r="6"/><circle class="thinker-star" cx="1235.0" cy="496.5" r="2.48"/></a>
+      <a class="star-link" data-id="t-machine-minds-holland" href="holland.html"><title>Owen Holland</title><circle class="star-hit" cx="1271.0" cy="466.9" r="6"/><circle class="thinker-star" cx="1271.0" cy="466.9" r="1.91"/></a>
+      <a class="star-link" data-id="t-machine-minds-chrisley" href="chrisley.html"><title>Ron Chrisley</title><circle class="star-hit" cx="1252.6" cy="508.5" r="6"/><circle class="thinker-star" cx="1252.6" cy="508.5" r="1.92"/></a>
+      <a class="star-link" data-id="t-machine-minds-shanahan" href="shanahan.html"><title>Murray Shanahan</title><circle class="star-hit" cx="1236.4" cy="465.2" r="6"/><circle class="thinker-star" cx="1236.4" cy="465.2" r="2.04"/></a>
+      <a class="star-link" data-id="t-machine-minds-reggia" href="reggia.html"><title>James Reggia</title><circle class="star-hit" cx="1284.3" cy="488.5" r="6"/><circle class="thinker-star" cx="1284.3" cy="488.5" r="2.54"/></a>
+      <a class="star-link" data-id="t-machine-minds-gamez" href="gamez.html"><title>David Gamez</title><circle class="star-hit" cx="1235.1" cy="507.3" r="6"/><circle class="thinker-star" cx="1235.1" cy="507.3" r="2.53"/></a>
+      <a class="star-link" data-id="t-machine-minds-stan-franklin" href="stan-franklin.html"><title>Stan Franklin</title><circle class="star-hit" cx="1255.2" cy="457.6" r="6"/><circle class="thinker-star" cx="1255.2" cy="457.6" r="2.26"/></a>
+      <a class="star-link" data-id="t-machine-minds-schneider" href="schneider.html"><title>Susan Schneider</title><circle class="star-hit" cx="1271.2" cy="510.1" r="6"/><circle class="thinker-star" cx="1271.2" cy="510.1" r="2.67"/></a>
+      <a class="star-link" data-id="t-machine-minds-mcculloch" href="mcculloch.html"><title>Warren McCulloch</title><circle class="star-hit" cx="1219.9" cy="476.5" r="6"/><circle class="thinker-star" cx="1219.9" cy="476.5" r="2.71"/></a>
+      <a class="star-link" data-id="t-machine-minds-hayles" href="hayles.html"><title>N. Katherine Hayles</title><circle class="star-hit" cx="1287.8" cy="472.2" r="6"/><circle class="thinker-star" cx="1287.8" cy="472.2" r="2.34"/></a>
+      <a class="star-link" data-id="t-machine-minds-wiener" href="wiener.html"><title>Norbert Wiener</title><circle class="star-hit" cx="1262.3" cy="516.8" r="6"/><circle class="thinker-star" cx="1262.3" cy="516.8" r="2.13"/></a>
+      <a class="star-link" data-id="t-machine-minds-neumann" href="neumann.html"><title>John von Neumann</title><circle class="star-hit" cx="1229.4" cy="459.1" r="6"/><circle class="thinker-star" cx="1229.4" cy="459.1" r="2.10"/></a>
+      <a class="star-link" data-id="t-machine-minds-brooks" href="brooks.html"><title>Rodney Brooks</title><circle class="star-hit" cx="1290.8" cy="498.9" r="6"/><circle class="thinker-star" cx="1290.8" cy="498.9" r="2.19"/></a>
+      <a class="star-link" data-id="t-machine-minds-hutchins" href="hutchins.html"><title>Edwin Hutchins</title><circle class="star-hit" cx="1214.6" cy="492.9" r="6"/><circle class="thinker-star" cx="1214.6" cy="492.9" r="2.19"/></a>
+      <a class="star-link" data-id="t-machine-minds-simon" href="simon.html"><title>Allen Newell &amp; Herbert A. Simon</title><circle class="star-hit" cx="1280.5" cy="458.8" r="6"/><circle class="thinker-star" cx="1280.5" cy="458.8" r="2.31"/></a>
+      <a class="star-link" data-id="t-machine-minds-shannon" href="shannon.html"><title>Claude Shannon</title><circle class="star-hit" cx="1282.4" cy="512.0" r="6"/><circle class="thinker-star" cx="1282.4" cy="512.0" r="2.60"/></a>
+      <a class="star-link" data-id="t-machine-minds-dreyfus" href="dreyfus.html"><title>Hubert Dreyfus</title><circle class="star-hit" cx="1218.0" cy="467.7" r="6"/><circle class="thinker-star" cx="1218.0" cy="467.7" r="2.53"/></a>
+      <a class="star-link" data-id="t-machine-minds-minsky-papert" href="minsky-papert.html"><title>Marvin Minsky &amp; Seymour Papert</title><circle class="star-hit" cx="1299.2" cy="487.3" r="6"/><circle class="thinker-star" cx="1299.2" cy="487.3" r="2.36"/></a>
+      <a class="star-link" data-id="t-machine-minds-pitts" href="pitts.html"><title>Walter Pitts</title><circle class="star-hit" cx="1229.3" cy="515.7" r="6"/><circle class="thinker-star" cx="1229.3" cy="515.7" r="2.63"/></a>
+      <a class="star-link" data-id="t-machine-minds-ashby" href="ashby.html"><title>W. Ross Ashby</title><circle class="star-hit" cx="1234.4" cy="449.7" r="6"/><circle class="thinker-star" cx="1234.4" cy="449.7" r="2.63"/></a>
+    </g>
+    <g class="era-group" data-era="moral-status">
+      <circle class="era-hub-glow" cx="1310" cy="130" r="26" fill="url(#hubGlow)" aria-hidden="true"/>
+      <a class="era-hub-link" data-id="era-moral-status" href="moral-status.html"><title>Moral Status — era overview</title><circle class="hub-hit" cx="1310" cy="130" r="10"/><circle class="era-hub" cx="1310" cy="130" r="4.8" filter="url(#softGlow)"/></a>
+      <a class="star-link" data-id="t-moral-status-birch" href="birch.html"><title>Jonathan Birch</title><circle class="star-hit" cx="1327.5" cy="135.3" r="6"/><circle class="thinker-star" cx="1327.5" cy="135.3" r="2.11"/></a>
+      <a class="star-link" data-id="t-moral-status-butlin" href="butlin.html"><title>Patrick Butlin</title><circle class="star-hit" cx="1285.9" cy="133.8" r="6"/><circle class="thinker-star" cx="1285.9" cy="133.8" r="2.49"/></a>
+      <a class="star-link" data-id="t-moral-status-caviola" href="caviola.html"><title>Lucius Caviola</title><circle class="star-hit" cx="1322.0" cy="111.2" r="6"/><circle class="thinker-star" cx="1322.0" cy="111.2" r="2.09"/></a>
+      <a class="star-link" data-id="t-moral-status-long" href="long.html"><title>Robert Long</title><circle class="star-hit" cx="1304.9" cy="152.8" r="6"/><circle class="thinker-star" cx="1304.9" cy="152.8" r="2.70"/></a>
+      <a class="star-link" data-id="t-moral-status-saad" href="saad.html"><title>Bradford Saad</title><circle class="star-hit" cx="1289.2" cy="111.5" r="6"/><circle class="thinker-star" cx="1289.2" cy="111.5" r="2.03"/></a>
+      <a class="star-link" data-id="t-moral-status-schwitzgebel" href="schwitzgebel.html"><title>Eric Schwitzgebel</title><circle class="star-hit" cx="1341.2" cy="135.8" r="6"/><circle class="thinker-star" cx="1341.2" cy="135.8" r="2.09"/></a>
+      <a class="star-link" data-id="t-moral-status-sebo" href="sebo.html"><title>Jeff Sebo</title><circle class="star-hit" cx="1281.4" cy="145.5" r="6"/><circle class="thinker-star" cx="1281.4" cy="145.5" r="2.65"/></a>
+      <a class="star-link" data-id="t-moral-status-andrews" href="andrews.html"><title>Kristin Andrews</title><circle class="star-hit" cx="1303.4" cy="101.4" r="6"/><circle class="thinker-star" cx="1303.4" cy="101.4" r="2.16"/></a>
+      <a class="star-link" data-id="t-moral-status-nussbaum" href="nussbaum.html"><title>Martha Nussbaum</title><circle class="star-hit" cx="1335.4" cy="153.4" r="6"/><circle class="thinker-star" cx="1335.4" cy="153.4" r="2.39"/></a>
+    </g>
+  </g>
+  <g class="labels-layer" pointer-events="none">
+    <text class="thinker-label" data-id="t-antiquity-plato" x="128.7" y="391.7" text-anchor="middle">Plato</text>
+    <text class="thinker-label" data-id="t-antiquity-aristotle" x="85.5" y="395.1" text-anchor="middle">Aristotle</text>
+    <text class="thinker-label" data-id="t-antiquity-stoics" x="124.9" y="369.7" text-anchor="middle">The Stoics</text>
+    <text class="thinker-label" data-id="t-antiquity-pre-plotinus" x="129.2" y="408.3" text-anchor="middle">Before Plotinus</text>
+    <text class="thinker-label" data-id="t-antiquity-lucretius" x="88.6" y="367.4" text-anchor="middle">Lucretius</text>
+    <text class="era-hub-label" data-id="era-antiquity" x="110" y="373" text-anchor="middle" dominant-baseline="auto">Antiquity</text>
+    <text class="thinker-label" data-id="t-south-asian-upanishads" x="234.1" y="112.1" text-anchor="middle">Upaniṣads</text>
+    <text class="thinker-label" data-id="t-south-asian-gautama" x="191.7" y="108.0" text-anchor="middle">Gautama</text>
+    <text class="thinker-label" data-id="t-south-asian-nyaya" x="226.6" y="88.4" text-anchor="middle">Nyāya</text>
+    <text class="thinker-label" data-id="t-south-asian-isvarakrishna" x="209.3" y="129.5" text-anchor="middle">Īśvarakṛṣṇa</text>
+    <text class="thinker-label" data-id="t-south-asian-patanjali" x="188.4" y="97.1" text-anchor="middle">Patañjali</text>
+    <text class="thinker-label" data-id="t-south-asian-nagarjuna" x="244.8" y="99.7" text-anchor="middle">Nāgārjuna</text>
+    <text class="thinker-label" data-id="t-south-asian-vasubandhu" x="201.6" y="134.2" text-anchor="middle">Vasubandhu</text>
+    <text class="thinker-label" data-id="t-south-asian-dignaga" x="220.1" y="79.5" text-anchor="middle">Dignāga</text>
+    <text class="thinker-label" data-id="t-south-asian-dharmakirti" x="244.3" y="122.5" text-anchor="middle">Dharmakīrti</text>
+    <text class="thinker-label" data-id="t-south-asian-shankara" x="178.9" y="105.5" text-anchor="middle">Śaṅkara</text>
+    <text class="thinker-label" data-id="t-south-asian-shantarakshita" x="235.3" y="81.0" text-anchor="middle">Śāntarakṣita</text>
+    <text class="thinker-label" data-id="t-south-asian-kundakunda" x="213.4" y="141.7" text-anchor="middle">Kundakunda</text>
+    <text class="thinker-label" data-id="t-south-asian-umasvati" x="189.7" y="81.8" text-anchor="middle">Umāsvāti</text>
+    <text class="thinker-label" data-id="t-south-asian-haribhadra" x="254.7" y="108.7" text-anchor="middle">Haribhadra</text>
+    <text class="thinker-label" data-id="t-south-asian-hemacandra" x="174.3" y="116.0" text-anchor="middle">Hemacandra</text>
+    <text class="era-hub-label" data-id="era-south-asian" x="215" y="145" text-anchor="middle" dominant-baseline="hanging">South Asian</text>
+    <text class="thinker-label" data-id="t-east-asian-confucius" x="363.3" y="139.4" text-anchor="middle">Confucius</text>
+    <text class="thinker-label" data-id="t-east-asian-dogen" x="324.2" y="141.1" text-anchor="middle">Dōgen</text>
+    <text class="thinker-label" data-id="t-east-asian-fazang" x="367.2" y="124.8" text-anchor="middle">Fazang</text>
+    <text class="thinker-label" data-id="t-east-asian-kuiji" x="353.2" y="160.8" text-anchor="middle">Kuiji</text>
+    <text class="thinker-label" data-id="t-east-asian-laozi" x="315.8" y="138.0" text-anchor="middle">Laozi</text>
+    <text class="thinker-label" data-id="t-east-asian-mencius" x="374.6" y="135.4" text-anchor="middle">Mencius</text>
+    <text class="thinker-label" data-id="t-east-asian-mozi" x="317.2" y="150.8" text-anchor="middle">Mozi</text>
+    <text class="thinker-label" data-id="t-east-asian-wang-yangming" x="341.7" y="109.7" text-anchor="middle">Wang Yangming</text>
+    <text class="thinker-label" data-id="t-east-asian-xuanzang" x="377.4" y="150.5" text-anchor="middle">Xuanzang</text>
+    <text class="thinker-label" data-id="t-east-asian-xunzi" x="308.6" y="143.4" text-anchor="middle">Xunzi</text>
+    <text class="thinker-label" data-id="t-east-asian-zhiyi" x="382.7" y="131.4" text-anchor="middle">Zhiyi</text>
+    <text class="thinker-label" data-id="t-east-asian-zhu-xi" x="341.9" y="170.2" text-anchor="middle">Zhu Xi</text>
+    <text class="thinker-label" data-id="t-east-asian-zhuangzi" x="320.0" y="111.8" text-anchor="middle">Zhuangzi</text>
+    <text class="era-hub-label" data-id="era-east-asian" x="345" y="175" text-anchor="middle" dominant-baseline="hanging">East Asian</text>
+    <text class="thinker-label" data-id="t-late-antiquity-aphrodisias" x="281.2" y="486.0" text-anchor="middle">Alexander of Aphrodisias</text>
+    <text class="thinker-label" data-id="t-late-antiquity-plotinus" x="243.6" y="485.5" text-anchor="middle">Plotinus</text>
+    <text class="thinker-label" data-id="t-late-antiquity-augustine" x="262.1" y="456.4" text-anchor="middle">Augustine of Hippo</text>
+    <text class="thinker-label" data-id="t-late-antiquity-pseudo-dionysius" x="262.3" y="503.7" text-anchor="middle">Pseudo-Dionysius</text>
+    <text class="thinker-label" data-id="t-late-antiquity-boethius" x="243.5" y="460.1" text-anchor="middle">Boethius</text>
+    <text class="thinker-label" data-id="t-late-antiquity-damascus" x="297.1" y="480.1" text-anchor="middle">John of Damascus</text>
+    <text class="thinker-label" data-id="t-late-antiquity-maximus-confessor" x="239.6" y="497.8" text-anchor="middle">Maximus the Confessor</text>
+    <text class="era-hub-label" data-id="era-late-antiquity" x="265" y="463" text-anchor="middle" dominant-baseline="auto">Late Antiquity</text>
+    <text class="thinker-label" data-id="t-islamic-al-farabi" x="408.4" y="334.4" text-anchor="middle">al-Fārābī</text>
+    <text class="thinker-label" data-id="t-islamic-avicenna" x="376.4" y="335.5" text-anchor="middle">Avicenna (Ibn Sīnā)</text>
+    <text class="thinker-label" data-id="t-islamic-averroes" x="405.8" y="301.8" text-anchor="middle">Averroes (Ibn Rushd)</text>
+    <text class="thinker-label" data-id="t-islamic-suhrawardi" x="403.9" y="345.4" text-anchor="middle">Suhrawardī</text>
+    <text class="thinker-label" data-id="t-islamic-al-ghazali" x="373.6" y="303.6" text-anchor="middle">al-Ghazālī</text>
+    <text class="thinker-label" data-id="t-islamic-arabi" x="428.5" y="329.0" text-anchor="middle">Ibn Arabi</text>
+    <text class="thinker-label" data-id="t-islamic-sadra" x="389.8" y="352.1" text-anchor="middle">Mullā Ṣadrā</text>
+    <text class="era-hub-label" data-id="era-islamic" x="395" y="360" text-anchor="middle" dominant-baseline="hanging">Islamic</text>
+    <text class="thinker-label" data-id="t-jewish-maimonides" x="503.9" y="507.1" text-anchor="middle">Maimonides</text>
+    <text class="thinker-label" data-id="t-jewish-gersonides" x="459.6" y="503.5" text-anchor="middle">Gersonides (Ralbag)</text>
+    <text class="era-hub-label" data-id="era-jewish" x="485" y="483" text-anchor="middle" dominant-baseline="auto">Jewish</text>
+    <text class="thinker-label" data-id="t-scholasticism-anselm" x="549.4" y="217.6" text-anchor="middle">Anselm of Canterbury</text>
+    <text class="thinker-label" data-id="t-scholasticism-bonaventure" x="507.9" y="218.0" text-anchor="middle">Bonaventure</text>
+    <text class="thinker-label" data-id="t-scholasticism-aquinas" x="531.0" y="196.0" text-anchor="middle">Thomas Aquinas</text>
+    <text class="thinker-label" data-id="t-scholasticism-henry-of-ghent" x="539.9" y="239.9" text-anchor="middle">Henry of Ghent</text>
+    <text class="thinker-label" data-id="t-scholasticism-olivi" x="519.3" y="194.8" text-anchor="middle">Peter John Olivi</text>
+    <text class="thinker-label" data-id="t-scholasticism-ockham" x="561.6" y="221.7" text-anchor="middle">William of Ockham</text>
+    <text class="thinker-label" data-id="t-scholasticism-chatton" x="503.2" y="231.8" text-anchor="middle">Walter Chatton</text>
+    <text class="thinker-label" data-id="t-scholasticism-albert" x="510.4" y="193.2" text-anchor="middle">Albert the Great</text>
+    <text class="thinker-label" data-id="t-scholasticism-auriol" x="548.3" y="243.3" text-anchor="middle">Peter Auriol</text>
+    <text class="thinker-label" data-id="t-scholasticism-buridan" x="494.7" y="228.6" text-anchor="middle">Jean Buridan</text>
+    <text class="thinker-label" data-id="t-scholasticism-hadewijch" x="549.9" y="192.3" text-anchor="middle">Hadewijch</text>
+    <text class="thinker-label" data-id="t-scholasticism-norwich" x="527.3" y="250.8" text-anchor="middle">Julian of Norwich</text>
+    <text class="thinker-label" data-id="t-scholasticism-porete" x="518.9" y="185.7" text-anchor="middle">Marguerite Porete</text>
+    <text class="thinker-label" data-id="t-scholasticism-rimini" x="570.0" y="215.1" text-anchor="middle">Gregory of Rimini</text>
+    <text class="thinker-label" data-id="t-scholasticism-roger-bacon" x="497.4" y="238.7" text-anchor="middle">Roger Bacon</text>
+    <text class="thinker-label" data-id="t-scholasticism-oresme" x="535.8" y="183.8" text-anchor="middle">Nicole Oresme</text>
+    <text class="era-hub-label" data-id="era-scholasticism" x="530" y="255" text-anchor="middle" dominant-baseline="hanging">Scholasticism</text>
+    <text class="thinker-label" data-id="t-renaissance-ficino" x="670.5" y="432.1" text-anchor="middle">Marsilio Ficino</text>
+    <text class="thinker-label" data-id="t-renaissance-pomponazzi" x="637.2" y="437.1" text-anchor="middle">Pietro Pomponazzi</text>
+    <text class="thinker-label" data-id="t-renaissance-suarez" x="671.6" y="405.5" text-anchor="middle">Francisco Suárez</text>
+    <text class="thinker-label" data-id="t-renaissance-avila" x="662.7" y="446.3" text-anchor="middle">Teresa of Ávila</text>
+    <text class="thinker-label" data-id="t-renaissance-cusa" x="625.2" y="411.3" text-anchor="middle">Nicholas of Cusa</text>
+    <text class="thinker-label" data-id="t-renaissance-john-cross" x="686.6" y="426.2" text-anchor="middle">John of the Cross</text>
+    <text class="era-hub-label" data-id="era-renaissance" x="655" y="408" text-anchor="middle" dominant-baseline="auto">Renaissance</text>
+    <text class="thinker-label" data-id="t-early-modern-hobbes" x="806.6" y="283.7" text-anchor="middle">Thomas Hobbes</text>
+    <text class="thinker-label" data-id="t-early-modern-descartes" x="766.2" y="278.8" text-anchor="middle">René Descartes</text>
+    <text class="thinker-label" data-id="t-early-modern-spinoza" x="809.6" y="262.8" text-anchor="middle">Baruch Spinoza</text>
+    <text class="thinker-label" data-id="t-early-modern-locke" x="800.0" y="299.6" text-anchor="middle">John Locke</text>
+    <text class="thinker-label" data-id="t-early-modern-leibniz" x="765.9" y="263.1" text-anchor="middle">Gottfried Wilhelm Leibniz</text>
+    <text class="thinker-label" data-id="t-early-modern-reid" x="822.0" y="279.2" text-anchor="middle">Thomas Reid</text>
+    <text class="thinker-label" data-id="t-early-modern-hume" x="777.0" y="302.6" text-anchor="middle">David Hume</text>
+    <text class="thinker-label" data-id="t-early-modern-shepherd" x="785.7" y="250.4" text-anchor="middle">Mary Shepherd</text>
+    <text class="thinker-label" data-id="t-early-modern-kant" x="809.1" y="303.4" text-anchor="middle">Immanuel Kant</text>
+    <text class="thinker-label" data-id="t-early-modern-berkeley" x="756.5" y="273.3" text-anchor="middle">George Berkeley</text>
+    <text class="thinker-label" data-id="t-early-modern-bohemia" x="820.7" y="262.3" text-anchor="middle">Elisabeth of Bohemia</text>
+    <text class="thinker-label" data-id="t-early-modern-butler" x="782.8" y="309.5" text-anchor="middle">Joseph Butler</text>
+    <text class="thinker-label" data-id="t-early-modern-cavendish" x="770.8" y="247.9" text-anchor="middle">Margaret Cavendish</text>
+    <text class="thinker-label" data-id="t-early-modern-chatelet" x="826.3" y="290.6" text-anchor="middle">Émilie du Châtelet</text>
+    <text class="thinker-label" data-id="t-early-modern-conway" x="747.5" y="274.2" text-anchor="middle">Anne Conway</text>
+    <text class="thinker-label" data-id="t-early-modern-diderot" x="786.9" y="241.4" text-anchor="middle">Denis Diderot</text>
+    <text class="thinker-label" data-id="t-early-modern-la-mettrie" x="800.4" y="312.8" text-anchor="middle">Julien Offray de La Mettrie</text>
+    <text class="thinker-label" data-id="t-early-modern-masham" x="757.7" y="254.7" text-anchor="middle">Damaris Cudworth Masham</text>
+    <text class="era-hub-label" data-id="era-early-modern" x="790" y="315" text-anchor="middle" dominant-baseline="hanging">Early Modern</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-james-mill" x="909.8" y="487.0" text-anchor="middle">James Mill</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-herbart" x="874.4" y="483.3" text-anchor="middle">Johann Friedrich Herbart</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-brown" x="908.4" y="459.8" text-anchor="middle">Thomas Brown</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-bolzano" x="894.5" y="501.0" text-anchor="middle">Bernard Bolzano</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-hamilton" x="868.6" y="473.9" text-anchor="middle">William Hamilton</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-js-mill" x="924.5" y="469.2" text-anchor="middle">John Stuart Mill</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-lotze" x="876.0" y="498.5" text-anchor="middle">Hermann Lotze</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-bain" x="890.6" y="450.6" text-anchor="middle">Alexander Bain</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-hodgson" x="925.8" y="491.5" text-anchor="middle">Shadworth Hodgson</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-welby" x="861.9" y="467.9" text-anchor="middle">Victoria Welby</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-mach" x="914.0" y="450.6" text-anchor="middle">Ernst Mach</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-peirce" x="900.9" y="508.6" text-anchor="middle">Charles Sanders Peirce</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-jones" x="861.5" y="458.9" text-anchor="middle">E. E. Constance Jones</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-frege" x="934.0" y="487.7" text-anchor="middle">Gottlob Frege</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-robertson" x="868.1" y="502.8" text-anchor="middle">George Croom Robertson</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-ladd-franklin" x="905.8" y="446.0" text-anchor="middle">Christine Ladd-Franklin</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-bergson" x="909.4" y="511.5" text-anchor="middle">Henri Bergson</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-darwin" x="867.2" y="451.9" text-anchor="middle">Charles Darwin</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-fechner" x="937.1" y="474.5" text-anchor="middle">Gustav Fechner</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-fichte" x="877.0" y="512.5" text-anchor="middle">J. G. Fichte</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-hegel" x="899.4" y="439.6" text-anchor="middle">G. W. F. Hegel</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-ribot" x="931.6" y="500.3" text-anchor="middle">Théodule Ribot</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-romanes" x="859.2" y="501.7" text-anchor="middle">George Romanes</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-schelling" x="918.6" y="442.6" text-anchor="middle">F. W. J. Schelling</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-schopenhauer" x="888.8" y="516.8" text-anchor="middle">Arthur Schopenhauer</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-lange" x="852.6" y="457.6" text-anchor="middle">Carl Georg Lange</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-morgan" x="940.0" y="497.3" text-anchor="middle">C. Lloyd Morgan</text>
+    <text class="thinker-label" data-id="t-nineteenth-century-butler" x="849.7" y="491.1" text-anchor="middle">Samuel Butler</text>
+    <text class="era-hub-label" data-id="era-nineteenth-century" x="895" y="463" text-anchor="middle" dominant-baseline="auto">19th Century</text>
+    <text class="thinker-label" data-id="t-phenomenology-brentano" x="998.6" y="234.3" text-anchor="middle">Franz Brentano</text>
+    <text class="thinker-label" data-id="t-phenomenology-stumpf" x="963.2" y="227.4" text-anchor="middle">Carl Stumpf</text>
+    <text class="thinker-label" data-id="t-phenomenology-stout" x="1002.9" y="208.5" text-anchor="middle">G. F. Stout</text>
+    <text class="thinker-label" data-id="t-phenomenology-twardowski" x="999.1" y="244.0" text-anchor="middle">Kazimierz Twardowski</text>
+    <text class="thinker-label" data-id="t-phenomenology-husserl" x="965.6" y="205.6" text-anchor="middle">Edmund Husserl</text>
+    <text class="thinker-label" data-id="t-phenomenology-heidegger" x="1015.5" y="220.1" text-anchor="middle">Martin Heidegger</text>
+    <text class="thinker-label" data-id="t-phenomenology-sartre" x="956.3" y="235.0" text-anchor="middle">Jean-Paul Sartre</text>
+    <text class="thinker-label" data-id="t-phenomenology-merleau-ponty" x="982.4" y="193.7" text-anchor="middle">Maurice Merleau-Ponty</text>
+    <text class="thinker-label" data-id="t-phenomenology-kohler" x="1017.6" y="233.4" text-anchor="middle">Wolfgang Köhler</text>
+    <text class="thinker-label" data-id="t-phenomenology-mead" x="950.1" y="216.7" text-anchor="middle">George Herbert Mead</text>
+    <text class="thinker-label" data-id="t-phenomenology-piaget" x="1009.2" y="198.9" text-anchor="middle">Jean Piaget</text>
+    <text class="thinker-label" data-id="t-phenomenology-scheler" x="989.0" y="255.6" text-anchor="middle">Max Scheler</text>
+    <text class="thinker-label" data-id="t-phenomenology-uexkull" x="957.7" y="199.8" text-anchor="middle">Jakob von Uexküll</text>
+    <text class="thinker-label" data-id="t-phenomenology-bruner" x="1023.8" y="224.3" text-anchor="middle">Jerome Bruner</text>
+    <text class="thinker-label" data-id="t-phenomenology-luria" x="944.4" y="225.6" text-anchor="middle">Alexander Luria</text>
+    <text class="thinker-label" data-id="t-phenomenology-durkheim" x="1000.4" y="190.4" text-anchor="middle">Émile Durkheim</text>
+    <text class="thinker-label" data-id="t-phenomenology-fanon" x="1020.6" y="244.8" text-anchor="middle">Frantz Fanon</text>
+    <text class="thinker-label" data-id="t-phenomenology-vygotsky" x="941.4" y="214.4" text-anchor="middle">Lev Vygotsky</text>
+    <text class="era-hub-label" data-id="era-phenomenology" x="985" y="260" text-anchor="middle" dominant-baseline="hanging">Phenomenology</text>
+    <text class="thinker-label" data-id="t-analytic-james" x="1096.1" y="417.5" text-anchor="middle">William James</text>
+    <text class="thinker-label" data-id="t-analytic-ryle" x="1058.4" y="407.7" text-anchor="middle">Gilbert Ryle</text>
+    <text class="thinker-label" data-id="t-analytic-turing" x="1083.2" y="387.6" text-anchor="middle">Alan Turing</text>
+    <text class="thinker-label" data-id="t-analytic-place-smart" x="1091.2" y="428.1" text-anchor="middle">U. T. Place &amp; J. J. C. Smart</text>
+    <text class="thinker-label" data-id="t-analytic-davidson" x="1067.9" y="385.9" text-anchor="middle">Donald Davidson</text>
+    <text class="thinker-label" data-id="t-analytic-putnam" x="1107.2" y="398.7" text-anchor="middle">Hilary Putnam</text>
+    <text class="thinker-label" data-id="t-analytic-fodor" x="1054.2" y="422.8" text-anchor="middle">Jerry Fodor</text>
+    <text class="thinker-label" data-id="t-analytic-lewis" x="1076.1" y="380.1" text-anchor="middle">David Lewis</text>
+    <text class="thinker-label" data-id="t-analytic-nagel" x="1106.7" y="426.9" text-anchor="middle">Thomas Nagel</text>
+    <text class="thinker-label" data-id="t-analytic-dennett" x="1045.3" y="402.9" text-anchor="middle">Daniel Dennett</text>
+    <text class="thinker-label" data-id="t-analytic-searle" x="1116.2" y="397.7" text-anchor="middle">John Searle</text>
+    <text class="thinker-label" data-id="t-analytic-block" x="1055.7" y="431.7" text-anchor="middle">Ned Block</text>
+    <text class="thinker-label" data-id="t-analytic-rosenthal" x="1067.9" y="376.4" text-anchor="middle">David Rosenthal</text>
+    <text class="thinker-label" data-id="t-analytic-chalmers" x="1117.7" y="415.7" text-anchor="middle">David Chalmers</text>
+    <text class="thinker-label" data-id="t-analytic-russell" x="1045.9" y="426.5" text-anchor="middle">Bertrand Russell</text>
+    <text class="thinker-label" data-id="t-analytic-whitehead" x="1105.5" y="382.7" text-anchor="middle">Alfred North Whitehead</text>
+    <text class="thinker-label" data-id="t-analytic-quine" x="1091.4" y="441.5" text-anchor="middle">W. V. O. Quine</text>
+    <text class="thinker-label" data-id="t-analytic-gilbert" x="1045.3" y="387.6" text-anchor="middle">Margaret Gilbert</text>
+    <text class="thinker-label" data-id="t-analytic-brandom" x="1117.0" y="388.7" text-anchor="middle">Robert Brandom</text>
+    <text class="thinker-label" data-id="t-analytic-anscombe" x="1074.1" y="445.7" text-anchor="middle">G. E. M. Anscombe</text>
+    <text class="thinker-label" data-id="t-analytic-bratman" x="1086.5" y="371.5" text-anchor="middle">Michael Bratman</text>
+    <text class="thinker-label" data-id="t-analytic-wittgenstein" x="1124.2" y="422.0" text-anchor="middle">Ludwig Wittgenstein</text>
+    <text class="thinker-label" data-id="t-analytic-strawson" x="1036.4" y="399.3" text-anchor="middle">P. F. Strawson &amp; Galen Strawson</text>
+    <text class="thinker-label" data-id="t-analytic-pettit" x="1114.2" y="380.1" text-anchor="middle">Philip Pettit</text>
+    <text class="thinker-label" data-id="t-analytic-cavell" x="1082.8" y="448.1" text-anchor="middle">Stanley Cavell</text>
+    <text class="thinker-label" data-id="t-analytic-tuomela" x="1072.2" y="368.5" text-anchor="middle">Raimo Tuomela</text>
+    <text class="thinker-label" data-id="t-analytic-list" x="1125.0" y="393.6" text-anchor="middle">Christian List</text>
+    <text class="thinker-label" data-id="t-analytic-sellars" x="1035.9" y="425.6" text-anchor="middle">Wilfrid Sellars</text>
+    <text class="era-hub-label" data-id="era-analytic" x="1080" y="393" text-anchor="middle" dominant-baseline="auto">Analytic</text>
+    <text class="thinker-label" data-id="t-consciousness-science-baars" x="1192.0" y="235.7" text-anchor="middle">Bernard Baars</text>
+    <text class="thinker-label" data-id="t-consciousness-science-dehaene" x="1153.3" y="235.0" text-anchor="middle">Stanislas Dehaene</text>
+    <text class="thinker-label" data-id="t-consciousness-science-tononi" x="1177.7" y="205.8" text-anchor="middle">Giulio Tononi</text>
+    <text class="thinker-label" data-id="t-consciousness-science-lamme" x="1193.7" y="244.6" text-anchor="middle">Victor Lamme</text>
+    <text class="thinker-label" data-id="t-consciousness-science-graziano" x="1154.9" y="212.2" text-anchor="middle">Michael Graziano</text>
+    <text class="thinker-label" data-id="t-consciousness-science-seth" x="1206.1" y="223.3" text-anchor="middle">Anil Seth</text>
+    <text class="thinker-label" data-id="t-consciousness-science-solms" x="1153.1" y="245.9" text-anchor="middle">Mark Solms</text>
+    <text class="thinker-label" data-id="t-consciousness-science-friston-hohwy-clark" x="1159.7" y="204.6" text-anchor="middle">Friston, Hohwy &amp; Clark</text>
+    <text class="thinker-label" data-id="t-consciousness-science-varela-thompson-rosch" x="1202.3" y="247.4" text-anchor="middle">Varela, Thompson &amp; Rosch</text>
+    <text class="thinker-label" data-id="t-consciousness-science-clark" x="1145.9" y="213.3" text-anchor="middle">Andy Clark</text>
+    <text class="thinker-label" data-id="t-consciousness-science-barrett" x="1203.6" y="212.0" text-anchor="middle">Lisa Feldman Barrett</text>
+    <text class="thinker-label" data-id="t-consciousness-science-bion" x="1159.7" y="257.6" text-anchor="middle">Wilfred Bion</text>
+    <text class="thinker-label" data-id="t-consciousness-science-cannon" x="1161.4" y="195.7" text-anchor="middle">Walter B. Cannon</text>
+    <text class="thinker-label" data-id="t-consciousness-science-damasio" x="1210.8" y="243.7" text-anchor="middle">Antonio Damasio</text>
+    <text class="thinker-label" data-id="t-consciousness-science-griffin" x="1146.2" y="251.6" text-anchor="middle">Donald Griffin</text>
+    <text class="thinker-label" data-id="t-consciousness-science-klein" x="1192.0" y="196.7" text-anchor="middle">Melanie Klein</text>
+    <text class="thinker-label" data-id="t-consciousness-science-ledoux" x="1192.2" y="260.2" text-anchor="middle">Joseph LeDoux</text>
+    <text class="thinker-label" data-id="t-consciousness-science-lorenz" x="1137.2" y="215.7" text-anchor="middle">Konrad Lorenz</text>
+    <text class="thinker-label" data-id="t-consciousness-science-panksepp" x="1210.9" y="206.8" text-anchor="middle">Jaak Panksepp</text>
+    <text class="thinker-label" data-id="t-consciousness-science-tinbergen" x="1175.5" y="266.0" text-anchor="middle">Nikolaas Tinbergen</text>
+    <text class="thinker-label" data-id="t-consciousness-science-janet" x="1174.2" y="190.4" text-anchor="middle">Pierre Janet</text>
+    <text class="thinker-label" data-id="t-consciousness-science-freud" x="1207.7" y="256.2" text-anchor="middle">Sigmund Freud</text>
+    <text class="thinker-label" data-id="t-consciousness-science-waal" x="1128.2" y="215.1" text-anchor="middle">Frans de Waal</text>
+    <text class="thinker-label" data-id="t-consciousness-science-winnicott" x="1190.3" y="187.9" text-anchor="middle">D. W. Winnicott</text>
+    <text class="thinker-label" data-id="t-consciousness-science-tomasello" x="1187.7" y="268.0" text-anchor="middle">Michael Tomasello</text>
+    <text class="thinker-label" data-id="t-consciousness-science-colombetti" x="1145.9" y="196.4" text-anchor="middle">Giovanna Colombetti</text>
+    <text class="era-hub-label" data-id="era-consciousness-science" x="1175" y="265" text-anchor="middle" dominant-baseline="hanging">Consciousness Science</text>
+    <text class="thinker-label" data-id="t-machine-minds-aleksander" x="1269.5" y="489.7" text-anchor="middle">Igor Aleksander</text>
+    <text class="thinker-label" data-id="t-machine-minds-haikonen" x="1235.0" y="489.5" text-anchor="middle">Pentti Haikonen</text>
+    <text class="thinker-label" data-id="t-machine-minds-holland" x="1271.0" y="459.9" text-anchor="middle">Owen Holland</text>
+    <text class="thinker-label" data-id="t-machine-minds-chrisley" x="1252.6" y="501.5" text-anchor="middle">Ron Chrisley</text>
+    <text class="thinker-label" data-id="t-machine-minds-shanahan" x="1236.4" y="458.2" text-anchor="middle">Murray Shanahan</text>
+    <text class="thinker-label" data-id="t-machine-minds-reggia" x="1284.3" y="481.5" text-anchor="middle">James Reggia</text>
+    <text class="thinker-label" data-id="t-machine-minds-gamez" x="1235.1" y="500.3" text-anchor="middle">David Gamez</text>
+    <text class="thinker-label" data-id="t-machine-minds-stan-franklin" x="1255.2" y="450.6" text-anchor="middle">Stan Franklin</text>
+    <text class="thinker-label" data-id="t-machine-minds-schneider" x="1271.2" y="503.1" text-anchor="middle">Susan Schneider</text>
+    <text class="thinker-label" data-id="t-machine-minds-mcculloch" x="1219.9" y="469.5" text-anchor="middle">Warren McCulloch</text>
+    <text class="thinker-label" data-id="t-machine-minds-hayles" x="1287.8" y="465.2" text-anchor="middle">N. Katherine Hayles</text>
+    <text class="thinker-label" data-id="t-machine-minds-wiener" x="1262.3" y="509.8" text-anchor="middle">Norbert Wiener</text>
+    <text class="thinker-label" data-id="t-machine-minds-neumann" x="1229.4" y="452.1" text-anchor="middle">John von Neumann</text>
+    <text class="thinker-label" data-id="t-machine-minds-brooks" x="1290.8" y="491.9" text-anchor="middle">Rodney Brooks</text>
+    <text class="thinker-label" data-id="t-machine-minds-hutchins" x="1214.6" y="485.9" text-anchor="middle">Edwin Hutchins</text>
+    <text class="thinker-label" data-id="t-machine-minds-simon" x="1280.5" y="451.8" text-anchor="middle">Allen Newell &amp; Herbert A. Simon</text>
+    <text class="thinker-label" data-id="t-machine-minds-shannon" x="1282.4" y="505.0" text-anchor="middle">Claude Shannon</text>
+    <text class="thinker-label" data-id="t-machine-minds-dreyfus" x="1218.0" y="460.7" text-anchor="middle">Hubert Dreyfus</text>
+    <text class="thinker-label" data-id="t-machine-minds-minsky-papert" x="1299.2" y="480.3" text-anchor="middle">Marvin Minsky &amp; Seymour Papert</text>
+    <text class="thinker-label" data-id="t-machine-minds-pitts" x="1229.3" y="508.7" text-anchor="middle">Walter Pitts</text>
+    <text class="thinker-label" data-id="t-machine-minds-ashby" x="1234.4" y="442.7" text-anchor="middle">W. Ross Ashby</text>
+    <text class="era-hub-label" data-id="era-machine-minds" x="1255" y="463" text-anchor="middle" dominant-baseline="auto">Machine Minds</text>
+    <text class="thinker-label" data-id="t-moral-status-birch" x="1327.5" y="128.3" text-anchor="middle">Jonathan Birch</text>
+    <text class="thinker-label" data-id="t-moral-status-butlin" x="1285.9" y="126.8" text-anchor="middle">Patrick Butlin</text>
+    <text class="thinker-label" data-id="t-moral-status-caviola" x="1322.0" y="104.2" text-anchor="middle">Lucius Caviola</text>
+    <text class="thinker-label" data-id="t-moral-status-long" x="1304.9" y="145.8" text-anchor="middle">Robert Long</text>
+    <text class="thinker-label" data-id="t-moral-status-saad" x="1289.2" y="104.5" text-anchor="middle">Bradford Saad</text>
+    <text class="thinker-label" data-id="t-moral-status-schwitzgebel" x="1341.2" y="128.8" text-anchor="middle">Eric Schwitzgebel</text>
+    <text class="thinker-label" data-id="t-moral-status-sebo" x="1281.4" y="138.5" text-anchor="middle">Jeff Sebo</text>
+    <text class="thinker-label" data-id="t-moral-status-andrews" x="1303.4" y="94.4" text-anchor="middle">Kristin Andrews</text>
+    <text class="thinker-label" data-id="t-moral-status-nussbaum" x="1335.4" y="146.4" text-anchor="middle">Martha Nussbaum</text>
+    <text class="era-hub-label" data-id="era-moral-status" x="1310" y="160" text-anchor="middle" dominant-baseline="hanging">Moral Status</text>
+  </g>
+  <script><![CDATA[
+    (function() {
+      var svgs = document.querySelectorAll(".constellation-svg");
+      for (var s = 0; s < svgs.length; s++) {
+        (function(svg) {
+          var labels = {};
+          var labelEls = svg.querySelectorAll(".labels-layer [data-id]");
+          for (var i = 0; i < labelEls.length; i++) {
+            labels[labelEls[i].getAttribute("data-id")] = labelEls[i];
+          }
+          var links = svg.querySelectorAll(".star-link, .era-hub-link");
+          for (var j = 0; j < links.length; j++) {
+            (function(link) {
+              var label = labels[link.getAttribute("data-id")];
+              if (!label) return;
+              var on = function() {
+                label.classList.add("is-hot");
+                label.parentNode.appendChild(label);
+              };
+              var off = function() { label.classList.remove("is-hot"); };
+              link.addEventListener("mouseenter", on);
+              link.addEventListener("mouseleave", off);
+              link.addEventListener("focusin", on);
+              link.addEventListener("focusout", off);
+            })(links[j]);
+          }
+        })(svgs[s]);
+      }
+    })();
+  ]]></script>
+</svg>
+</figure>
+</section>
+
+<section class="curricula" aria-labelledby="curricula-heading">
+  <div class="curricula-shell">
+    <div class="curricula-intro">
+      <div class="curricula-kicker">Learn more</div>
+      <h2 id="curricula-heading">Three ways to move through the history of mind</h2>
+    </div>
+
+    <div class="curricula-tabs" role="tablist" aria-label="Homepage curricula">
+      <button class="curricula-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="curriculum-models" id="tab-models" data-curriculum-tab="models">Positions &amp; models</button> <button class="curricula-tab" type="button" role="tab" aria-selected="false" aria-controls="curriculum-methods" id="tab-methods" data-curriculum-tab="methods">Methods</button> <button class="curricula-tab" type="button" role="tab" aria-selected="false" aria-controls="curriculum-ai" id="tab-ai" data-curriculum-tab="ai">Roads to AI</button>
+    </div>
+
+    <section class="curricula-panel is-active" id="curriculum-models" role="tabpanel" aria-labelledby="tab-models" data-curriculum-panel="models">
+      <aside class="curricula-summary">
+        <h3>Positions &amp; models</h3>
+        <p>A map of the major answers to the question what mind is: soul, form, matter, representation, function, embodiment, social agency, and consciousness-first process.</p>
+      </aside>
+      <div class="curricula-blocks">
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 01</span>
+            <h4>Mind as soul</h4>
+            <p>Mind as a principle of life, inwardness, or spiritual reality rather than merely a mechanism.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Plato, Plotinus, Augustine, Upaniṣads, Teresa of Ávila</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 02</span>
+            <h4>Mind as form of the living body</h4>
+            <p>Hylomorphism, faculties, and the claim that soul names the organizing actuality of embodied life.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Aristotle, Alexander of Aphrodisias, Avicenna, Thomas Aquinas, Albert the Great</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 03</span>
+            <h4>Mind as matter in motion</h4>
+            <p>Materialist and proto-physicalist attempts to explain life and thought without immaterial substance.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Lucretius, The Stoics, Thomas Hobbes, La Mettrie, Place &amp; Smart</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 04</span>
+            <h4>Mind as intellect and illumination</h4>
+            <p>Rational ascent, illumination, and intellect as a privileged route to reality and self-knowledge.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Plotinus, al-Fārābī, Avicenna, Averroes, Maimonides, Suhrawardī</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 05</span>
+            <h4>Mind as self, stream, or bundle</h4>
+            <p>Competing pictures of personal identity, inward unity, and whether the self is stable, shifting, or illusory.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Augustine, Hume, William James, Nāgārjuna, Vasubandhu</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 06</span>
+            <h4>Mind as representation</h4>
+            <p>Ideas, content, intentionality, and inner structure as the basic grammar of mentality.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Descartes, Locke, Brentano, Twardowski, Fodor, Rosenthal</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 07</span>
+            <h4>Mind as function or computation</h4>
+            <p>Mental states defined by role, organization, or information-processing rather than by a special substance.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Turing, Putnam, Fodor, Lewis, Baars, Stan Franklin</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 08</span>
+            <h4>Mind as lived embodiment</h4>
+            <p>Mind understood through body, world, action, and situated experience rather than a detached inner theater.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Merleau-Ponty, Heidegger, Uexküll, Varela, Thompson &amp; Rosch, Clark, Colombetti</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 09</span>
+            <h4>Mind as social or distributed agency</h4>
+            <p>Shared intentionality, collective subjects, and minds scaffolded across persons and institutions.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Mead, Durkheim, Tomasello, Gilbert, Tuomela, Pettit, List, Hutchins</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 10</span>
+            <h4>Mind as integrated or consciousness-first process</h4>
+            <p>Consciousness treated as emergent, integrated, or fundamental enough to resist flat reduction.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Fechner, James, Russell, Whitehead, Nagel, Chalmers, Tononi</li>
+            </ul>
+          </article>
+      </div>
+    </section>
+    <section class="curricula-panel" id="curriculum-methods" role="tabpanel" aria-labelledby="tab-methods" data-curriculum-panel="methods" hidden>
+      <aside class="curricula-summary">
+        <h3>Methods</h3>
+        <p>A map of the major ways people have tried to know the mind: dialectic, contemplation, phenomenology, experiment, computation, neuroscience, and ethical reflection.</p>
+      </aside>
+      <div class="curricula-blocks">
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 01</span>
+            <h4>Dialectic and metaphysical argument</h4>
+            <p>Using first principles, paradoxes, and conceptual pressure to infer the structure of mind.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Plato, Plotinus, Descartes, Spinoza, Leibniz</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 02</span>
+            <h4>Contemplative and spiritual introspection</h4>
+            <p>Disciplined inward attention, meditation, and self-examination as methods of access to consciousness and self.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Upaniṣads, Patañjali, Augustine, Teresa of Ávila, John of the Cross, Dōgen</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 03</span>
+            <h4>Logical and epistemic analysis</h4>
+            <p>Cognition approached through validity, inference, error, and the conditions of successful knowledge.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Nyāya, Gautama, Dignāga, Dharmakīrti, Frege, Bolzano</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 04</span>
+            <h4>Faculty psychology and taxonomic analysis</h4>
+            <p>Mind broken down into powers such as sensation, imagination, memory, intellect, and will.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Aristotle, Avicenna, Aquinas, Reid, Herbart</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 05</span>
+            <h4>Phenomenological description</h4>
+            <p>Careful first-person description of lived experience without reducing it too quickly to mechanism or language.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Brentano, Husserl, Heidegger, Sartre, Merleau-Ponty, Scheler</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 06</span>
+            <h4>Experimental psychology and psychophysics</h4>
+            <p>Measurement, threshold, report, and controlled observation turn mind into a laboratory problem.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Fechner, Bain, Ribot, Janet, William James, Ladd-Franklin</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 07</span>
+            <h4>Evolutionary and comparative inquiry</h4>
+            <p>Mind studied through continuity with animal life, adaptation, behavior, and social intelligence.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Darwin, Romanes, Morgan, Lorenz, Tinbergen, de Waal, Tomasello</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 08</span>
+            <h4>Psychoanalytic and developmental interpretation</h4>
+            <p>Conflict, symbol, attachment, development, and the unconscious as routes to what the mind is doing.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Freud, Klein, Bion, Winnicott, Piaget</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 09</span>
+            <h4>Linguistic and conceptual analysis</h4>
+            <p>Ordinary language and conceptual grammar used to expose confusions about inner episodes and mentality.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Wittgenstein, Ryle, Sellars, Cavell, Strawson</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 10</span>
+            <h4>Computational and formal modeling</h4>
+            <p>Thought investigated by formalization, system design, and information-processing architectures.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Turing, Shannon, McCulloch, Simon/Newell, Minsky/Papert, Ashby</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 11</span>
+            <h4>Neuroscientific and systems approaches</h4>
+            <p>Brain dynamics, global access, prediction, affective systems, and integration as scientific routes to mind.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Baars, Dehaene, Tononi, Lamme, Damasio, Seth, LeDoux, Friston/Hohwy/Clark</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 12</span>
+            <h4>Synthetic and ethical inquiry</h4>
+            <p>We learn what minds are by trying to build them and by asking which systems deserve moral concern.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Aleksander, Haikonen, Shanahan, Schneider, Birch, Andrews, Sebo, Nussbaum</li>
+            </ul>
+          </article>
+      </div>
+    </section>
+    <section class="curricula-panel" id="curriculum-ai" role="tabpanel" aria-labelledby="tab-ai" data-curriculum-panel="ai" hidden>
+      <aside class="curricula-summary">
+        <h3>Roads to AI</h3>
+        <p>A narrative route from ancient soul-talk to machine minds, artificial consciousness, and debates over synthetic moral status.</p>
+      </aside>
+      <div class="curricula-blocks">
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 01</span>
+            <h4>The first question: what kind of thing is a mind?</h4>
+            <p>Ancient options before computation: soul, form, and material organization.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Plato, Aristotle, The Stoics, Lucretius</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 02</span>
+            <h4>The inward turn and the mechanization problem</h4>
+            <p>Can an inner subject coexist with a mechanistic picture of nature?</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Augustine, Descartes, Hobbes, Spinoza, Locke</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 03</span>
+            <h4>Minds as representations and reasoners</h4>
+            <p>Thought becomes structured, rule-governed, and increasingly thinkable as system.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Leibniz, Kant, Frege, Brentano, William James</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 04</span>
+            <h4>From psychology to formal cognition</h4>
+            <p>Mental process becomes measurable, modellable, and open to scientific abstraction.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Fechner, Herbart, William James, Turing, Shannon</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 05</span>
+            <h4>Can thinking be computed?</h4>
+            <p>The classical computational turn in philosophy, cognitive science, and early AI.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Turing, McCulloch, Pitts, Simon/Newell, Minsky/Papert, Fodor, Putnam</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 06</span>
+            <h4>The critics of disembodied AI</h4>
+            <p>Embodiment, skill, and world-involvement challenge purely symbolic models.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Heidegger, Merleau-Ponty, Dreyfus, Brooks, Varela/Thompson/Rosch, Clark</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 07</span>
+            <h4>Machine consciousness proposals</h4>
+            <p>What would have to be true for an artificial system to be conscious rather than merely capable?</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Aleksander, Haikonen, Franklin, Shanahan, Reggia, Gamez, Schneider</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 08</span>
+            <h4>Human consciousness as the benchmark</h4>
+            <p>Competing scientific theories used to test whether machine consciousness is even intelligible.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Baars, Dehaene, Tononi, Lamme, Seth, Solms</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 09</span>
+            <h4>Agency without consciousness?</h4>
+            <p>Separating intelligence, agency, intentional stance, and subjective experience.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Dennett, Searle, Pettit, Tuomela, List, Tomasello</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 10</span>
+            <h4>Social and distributed minds</h4>
+            <p>If cognition is scaffolded across systems, artificial mind may not live in a single box.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Mead, Durkheim, Hutchins, Clark, Gilbert, Pettit</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 11</span>
+            <h4>Animal minds as the missing middle</h4>
+            <p>The road from human to machine passes through comparative cognition and sentience.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Darwin, Morgan, Griffin, Lorenz, Tinbergen, de Waal, Birch, Andrews</li>
+            </ul>
+          </article>
+        <article class="curriculum-block">
+            <span class="curriculum-block-index">Block 12</span>
+            <h4>If machines suffer, what follows?</h4>
+            <p>The AI story culminates in moral status, precaution, rights, and uncertainty under deep ignorance.</p>
+            <ul data-curriculum-entry-list>
+              <li><strong>Thinkers:</strong> Birch, Andrews, Sebo, Nussbaum, Schwitzgebel, Long, Butlin</li>
+            </ul>
+          </article>
+      </div>
+    </section>
+
+    <p class="curricula-note">These curricula are prototype editorial pathways layered onto the homepage. They do not replace the chronological arcs below; they give readers additional ways to enter the same archive.</p>
+  </div>
+</section>
+
+<section class="groups">
+  <h2>Four arcs of thought</h2>
+  <div class="groups-grid">
+    <article class="group-card">
+  <div class="group-kicker">5th c. BCE – 14th c. CE</div>
+  <h3>Ancient & Medieval</h3>
+  <p>From the Greek discovery of soul to the great medieval syntheses of philosophy and revelation.</p>
+  <ul class="era-row-list">
+    <li><a href="antiquity.html"><span class="era-row-title">Antiquity</span><span class="era-row-dates">5th c. BCE – 3rd c. CE</span></a></li><li><a href="late-antiquity.html"><span class="era-row-title">Late Antiquity</span><span class="era-row-dates">3rd – 6th c. CE</span></a></li><li><a href="islamic.html"><span class="era-row-title">Islamic Tradition</span><span class="era-row-dates">9th – 12th c. CE</span></a></li><li><a href="jewish.html"><span class="era-row-title">Jewish Tradition</span><span class="era-row-dates">12th – 14th c. CE</span></a></li><li><a href="scholasticism.html"><span class="era-row-title">Medieval Latin Scholasticism</span><span class="era-row-dates">11th – 14th c.</span></a></li><li><a href="south-asian.html"><span class="era-row-title">South Asian Traditions</span><span class="era-row-dates">c. 700 BCE – 12th c. CE</span></a></li><li><a href="east-asian.html"><span class="era-row-title">East Asian Traditions</span><span class="era-row-dates">6th c. BCE – 16th c. CE</span></a></li>
+  </ul>
+</article><article class="group-card">
+  <div class="group-kicker">15th – 18th c.</div>
+  <h3>Early Modern</h3>
+  <p>The philosophy of mind meets the scientific revolution: new syntheses, new skepticisms, and the slow loosening of the old vocabulary of soul.</p>
+  <ul class="era-row-list">
+    <li><a href="renaissance.html"><span class="era-row-title">Renaissance &amp; Late Scholasticism</span><span class="era-row-dates">15th – 17th c.</span></a></li><li><a href="early-modern.html"><span class="era-row-title">Early Modern</span><span class="era-row-dates">17th – 18th c.</span></a></li>
+  </ul>
+</article><article class="group-card">
+  <div class="group-kicker">19th – early 20th c.</div>
+  <h3>Modern</h3>
+  <p>Mind becomes an experimental and conceptual battleground as psychology emerges as a science and phenomenology and analytic philosophy part ways.</p>
+  <ul class="era-row-list">
+    <li><a href="nineteenth-century.html"><span class="era-row-title">Nineteenth Century</span><span class="era-row-dates">19th c.</span></a></li><li><a href="phenomenology.html"><span class="era-row-title">Phenomenology &amp; the Brentano School</span><span class="era-row-dates">late 19th – 20th c.</span></a></li><li><a href="analytic.html"><span class="era-row-title">Analytic Philosophy of Mind</span><span class="era-row-dates">20th – 21st c.</span></a></li>
+  </ul>
+</article><article class="group-card">
+  <div class="group-kicker">late 20th c. – present</div>
+  <h3>Contemporary</h3>
+  <p>Empirical theories of consciousness, attempts to build minds out of silicon, and a fresh debate about which systems deserve moral concern.</p>
+  <ul class="era-row-list">
+    <li><a href="consciousness-science.html"><span class="era-row-title">Consciousness Science</span><span class="era-row-dates">late 20th – 21st c.</span></a></li><li><a href="machine-minds.html"><span class="era-row-title">Machine Minds</span><span class="era-row-dates">20th – 21st c.</span></a></li><li><a href="moral-status.html"><span class="era-row-title">Moral Status &amp; AI Ethics</span><span class="era-row-dates">21st c.</span></a></li>
+  </ul>
+</article>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <p><em>Digital Minds</em> &middot; A history of thinking about the mind, from antiquity to the present day. <br>
+  A personal research project by Fabi&aacute;n. &middot;
+  <a href="about.html">About</a> &middot;
+  <a href="glossary.html">Glossary</a></p>
+</footer>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-curriculum-tab]'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('[data-curriculum-panel]'));
+    if (!tabs.length || !panels.length) return;
+
+    function activateTab(name) {
+      tabs.forEach(function (tab) {
+        var active = tab.getAttribute('data-curriculum-tab') === name;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', active ? 'true' : 'false');
+        tab.setAttribute('tabindex', active ? '0' : '-1');
+      });
+
+      panels.forEach(function (panel) {
+        var active = panel.getAttribute('data-curriculum-panel') === name;
+        panel.classList.toggle('is-active', active);
+        panel.hidden = !active;
+      });
+    }
+
+    tabs.forEach(function (tab, index) {
+      tab.addEventListener('click', function () {
+        activateTab(tab.getAttribute('data-curriculum-tab'));
+      });
+
+      tab.addEventListener('keydown', function (event) {
+        if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft' && event.key !== 'Home' && event.key !== 'End') return;
+        event.preventDefault();
+        var nextIndex = index;
+        if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+        if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = tabs.length - 1;
+        tabs[nextIndex].focus();
+        activateTab(tabs[nextIndex].getAttribute('data-curriculum-tab'));
+      });
+    });
+
+    activateTab('models');
+  });
+</script>
+</body>
+</html>
+
