@@ -16,15 +16,6 @@ It brings together ancient, medieval, early modern, modern, and contemporary thi
 This is a static site in plain HTML/CSS/JS.
 No framework, no build pipeline required for normal editing.
 
-## View locally
-
-```bash
-cd "/Users/fabian/Documents/Personal/Philosophy/Digital Minds/history-of-mind"
-python3 -m http.server 8000
-```
-
-Then open http://localhost:8000
-
 ## Structure (high level)
 
 - `index.html` — homepage
@@ -41,6 +32,3 @@ If you want to improve content or layout:
 - keep links relative,
 - keep the reading experience simple,
 - and test homepage + at least one era page + one philosopher page.
-
----
-Created and maintained by Fabián.
