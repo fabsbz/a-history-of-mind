@@ -30,7 +30,7 @@ Then open http://localhost:8000
 - `index.html` — homepage
 - `about.html` — project background and method
 - `glossary.html` — term definitions
-- `*.html` (root) — homepage, overview/category pages, glossary/about
+- `eras/*.html` — era/category overview pages
 - `philosophers/*.html` — individual philosopher entries
 - `style.css` — shared styling
 - `site.js` — interactive behavior
