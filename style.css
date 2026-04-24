@@ -551,8 +551,8 @@ body {
 }
 
 .save-entry-btn--card {
-  margin-left: 0.45rem;
-  transform: translateY(-0.12rem);
+  margin-left: 0;
+  transform: none;
 }
 
 .saved-entries-toggle {

@@ -1,5 +1,7 @@
 const SAVED_ENTRIES_STORAGE_KEY = 'digitalMindsSavedEntries.v1';
 const CURRICULUM_TRACKER_STORAGE_KEY = 'digitalMindsCurriculumTracker.v1';
+const CONTENT_ENTRY_DIRECTORIES = ['philosophers', 'eras'];
+const LEGACY_ROOT_ENTRY_HREFS = new Set(['index.html', 'index-curricula.html', 'about.html', 'glossary.html']);
 
 document.addEventListener('DOMContentLoaded', () => {
   setupNavMenus();
@@ -427,14 +429,10 @@ function collectSavableEntries() {
     if (!entry || !entry.href || seen.has(entry.href) || !targetHeading) return;
     seen.add(entry.href);
     const button = createSaveButton(variant);
-    if (variant === 'card') {
-      targetHeading.append(' ', button);
-    } else {
-      const slot = document.createElement('div');
-      slot.className = `save-entry-slot save-entry-slot--${variant}`;
-      slot.append(button);
-      targetHeading.insertAdjacentElement('afterend', slot);
-    }
+    const slot = document.createElement('div');
+    slot.className = `save-entry-slot save-entry-slot--${variant}`;
+    slot.append(button);
+    targetHeading.insertAdjacentElement('afterend', slot);
     candidates.push({ entry, button });
   };
 
@@ -748,7 +746,7 @@ function createSavedEntryItem(entry) {
 
   const link = document.createElement('a');
   link.className = 'saved-curriculum-entry-link';
-  link.href = entry.href;
+  link.href = formatEntryLinkHref(entry.href);
   link.textContent = entry.title;
 
   const meta = document.createElement('div');
@@ -845,7 +843,7 @@ function createCurriculumPanel(curriculum) {
       const label = entry.href ? document.createElement('a') : document.createElement('span');
       label.className = 'saved-curriculum-entry-link';
       label.textContent = entry.title;
-      if (entry.href) label.href = entry.href;
+      if (entry.href) label.href = formatEntryLinkHref(entry.href);
 
       item.append(toggle, label);
       entryList.append(item);
@@ -1040,6 +1038,14 @@ function getCurrentEssayHref() {
   return normalizeEntryHref(window.location.href);
 }
 
+function formatEntryLinkHref(href) {
+  const normalizedHref = normalizeEntryHref(href);
+  if (!normalizedHref) return '';
+  const path = window.location.pathname || '';
+  const inContentDirectory = CONTENT_ENTRY_DIRECTORIES.some((directory) => path.includes(`/${directory}/`));
+  return inContentDirectory ? `../${normalizedHref}` : normalizedHref;
+}
+
 function countCurriculumEntries(curriculum) {
   return curriculum.blocks.reduce((sum, block) => sum + block.entries.length, 0);
 }
@@ -1049,11 +1055,31 @@ function countCompletedCurriculumEntries(curriculum) {
 }
 
 function normalizeEntryHref(value) {
-  if (!value) return '';
+  const rawValue = cleanText(value);
+  if (!rawValue) return '';
+  const isBareHtmlHref = !rawValue.includes('/') && rawValue.endsWith('.html');
+  const isAlreadySiteRelative = CONTENT_ENTRY_DIRECTORIES.some((directory) => rawValue.startsWith(`${directory}/`));
+  if (isAlreadySiteRelative) return rawValue;
+  if (isBareHtmlHref && !LEGACY_ROOT_ENTRY_HREFS.has(rawValue)) {
+    return `philosophers/${rawValue}`;
+  }
+
   try {
-    const url = new URL(value, window.location.href);
-    const file = url.pathname.split('/').filter(Boolean).pop();
-    return file || '';
+    const url = new URL(rawValue, window.location.href);
+    const pathname = url.pathname.split('/').filter(Boolean).join('/');
+    if (!pathname) return '';
+
+    for (const directory of CONTENT_ENTRY_DIRECTORIES) {
+      const marker = `${directory}/`;
+      const markerIndex = pathname.indexOf(marker);
+      if (markerIndex !== -1) return pathname.slice(markerIndex);
+    }
+
+    if (!pathname.includes('/') && pathname.endsWith('.html') && !LEGACY_ROOT_ENTRY_HREFS.has(pathname)) {
+      return `philosophers/${pathname}`;
+    }
+
+    return pathname.split('/').pop() || '';
   } catch (error) {
     return '';
   }
